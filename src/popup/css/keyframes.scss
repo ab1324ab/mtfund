@@ -1,0 +1,351 @@
+/**
+ * 主题菜单动画设置 动画
+ * 18点02分
+ */
+
+// 动画
+.refresh.isRefresh {
+  animation: changDeg 1.5s linear 0s infinite;
+}
+
+@keyframes changDeg {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.open-closed-market {
+  transform-origin: 10px 0;
+  /* animation-delay: 1600ms; */
+  animation: open-closed-market 400ms;
+  animation-iteration-count: 1; /*动画只执行一次*/
+  animation-fill-mode: forwards; /*让动画停留在最后一帧 */
+}
+
+@keyframes open-closed-market {
+  from {
+    transform: rotate(0deg) translate(-30px, 0px);
+  }
+
+  to {
+    transform: rotate(0deg) translate(-50px, 0px);
+  }
+}
+
+.close-closed-market {
+  transform-origin: 10px 0;
+  animation: close-closed-market 500ms;
+  animation-iteration-count: 1; /*动画只执行一次*/
+  animation-fill-mode: forwards; /*让动画停留在最后一帧 */
+}
+
+@keyframes close-closed-market {
+  from {
+    transform: rotate(0deg) translate(-50px, 0px);
+  }
+
+  to {
+    transform: rotate(0deg) translate(-30px, 0px);
+    opacity: 0;
+  }
+}
+
+.open-change-log {
+  transform-origin: 10px 0;
+  /* animation-delay: 400ms; */
+  animation: open-change-log 400ms;
+  animation-iteration-count: 1; /*动画只执行一次*/
+  animation-fill-mode: forwards; /*让动画停留在最后一帧 */
+}
+
+@keyframes open-change-log {
+  0% {
+    transform: rotate(0deg) translate(-30px, -0px);
+  }
+  60% {
+    /* transform-origin: 30px 0; */
+  }
+  100% {
+    transform: rotate(0deg) translate(-77px, 22px);
+  }
+}
+
+.close-change-log {
+  transform-origin: 10px 0;
+  animation: close-change-log 500ms;
+  animation-iteration-count: 1; /*动画只执行一次*/
+  animation-fill-mode: forwards; /*让动画停留在最后一帧 */
+}
+
+@keyframes close-change-log {
+  0% {
+    transform: rotate(0deg) translate(-77px, 22px);
+  }
+  60% {
+    /* transform-origin: 30px 0; */
+  }
+  100% {
+    transform: rotate(0deg) translate(-30px, -0px);
+    opacity: 0;
+  }
+}
+
+.open-market {
+  transform-origin: 10px 0;
+  /* animation-delay: 800ms; */
+  animation: open-market 400ms;
+  animation-iteration-count: 1; /*动画只执行一次*/
+  animation-fill-mode: forwards; /*让动画停留在最后一帧 */
+}
+
+@keyframes open-market {
+  0% {
+    transform: rotate(0deg) translate(-30px, 0px);
+  }
+  40% {
+    /* transform-origin: 30px 0px; */
+  }
+  60% {
+    /* transform-origin: 30px 0px; */
+  }
+  100% {
+    transform: rotate(0deg) translate(-95px, 45px);
+  }
+}
+
+.close-market {
+  transform-origin: 10px 0;
+  animation: close-market 500ms;
+  -webkit-animation: close-market 500ms;
+  -moz-animation: close-market 500ms;
+  animation-iteration-count: 1; /*动画只执行一次*/
+  animation-fill-mode: forwards; /*让动画停留在最后一帧 */
+}
+
+@keyframes close-market {
+  0% {
+    transform: rotate(0deg) translate(-95px, 45px);
+  }
+  40% {
+    /* transform-origin: 30px 0px; */
+  }
+  60% {
+    /* transform-origin: 30px 0px; */
+  }
+  100% {
+    transform: rotate(0deg) translate(-30px, 0px);
+    opacity: 0;
+  }
+}
+
+.open-is-edit {
+  transform-origin: 10px 0;
+  /* animation-delay: 200ms; */
+  animation: open-is-edit 400ms;
+  animation-iteration-count: 1; /*动画只执行一次*/
+  animation-fill-mode: forwards; /*让动画停留在最后一帧 */
+  animation-timing-function: linear;
+}
+
+@keyframes open-is-edit {
+  0% {
+    transform: rotate(0deg) translate(-30px, 0px);
+  }
+  40% {
+    /* transform-origin: 40px -20px; */
+  }
+  60% {
+    transform: rotate(0deg) translate(-95px, 50px);
+  }
+  80% {
+    /* transform-origin: 70px -40px; */
+  }
+  100% {
+    transform: rotate(0deg) translate(-77px, 68px);
+  }
+}
+
+.close-is-edit {
+  transform-origin: 10px 0;
+  /* animation-delay: 200ms; */
+  animation: close-is-edit 300ms;
+  animation-iteration-count: 1; /*动画只执行一次*/
+  animation-fill-mode: forwards; /*让动画停留在最后一帧 */
+  animation-timing-function: linear;
+}
+
+@keyframes close-is-edit {
+  0% {
+    transform: rotate(0deg) translate(-77px, 68px);
+  }
+  40% {
+    /* transform-origin: 40px -20px; */
+    transform: rotate(0deg) translate(-95px, 45px);
+  }
+  60% {
+    /* transform: rotate(0deg) translate(-95px, 50px); */
+  }
+  80% {
+    /* transform-origin: 70px -40px; */
+  }
+  100% {
+    transform: rotate(0deg) translate(-30px, 0px);
+    opacity: 0;
+  }
+}
+
+.open-menu-option {
+  transform-origin: 10px 0;
+  animation: open-menu-option 400ms;
+  animation-iteration-count: 1; /*动画只执行一次*/
+  animation-fill-mode: forwards; /*让动画停留在最后一帧 */
+  animation-timing-function: linear;
+}
+
+@keyframes open-menu-option {
+  0% {
+    transform: rotate(0deg) translate(-30px, 0px);
+  }
+  40% {
+    /* transform-origin: 60px -50px; */
+  }
+  60% {
+    transform: rotate(0deg) translate(-95px, 50px);
+  }
+  80% {
+    /* transform-origin: 80px -60px; */
+  }
+  100% {
+    transform: rotate(0deg) translate(-50px, 91px);
+  }
+}
+
+.close-menu-option {
+  transform-origin: 10px 0;
+  animation: close-menu-option 300ms;
+
+  animation-iteration-count: 1; /*动画只执行一次*/
+  animation-fill-mode: forwards; /*让动画停留在最后一帧 */
+  animation-timing-function: linear;
+}
+
+@keyframes close-menu-option {
+  0% {
+    transform: rotate(0deg) translate(-50px, 91px);
+  }
+  40% {
+    /* transform-origin: 60px -50px; */
+    transform: rotate(0deg) translate(-95px, 45px);
+  }
+  60% {
+    /* transform: rotate(0deg) translate(-95px, 50px); */
+  }
+  80% {
+    /* transform-origin: 80px -60px; */
+  }
+  100% {
+    transform: rotate(0deg) translate(-30px, 0px);
+    opacity: 0;
+  }
+}
+
+.open-income-cost-gains {
+  animation: open-income-cost-gains 400ms;
+  animation-iteration-count: 1; /*动画只执行一次*/
+  animation-fill-mode: forwards; /*让动画停留在最后一帧 */
+  //animation-timing-function: linear;
+}
+
+@keyframes open-income-cost-gains {
+  from {
+    top: -45px;
+  }
+
+  to {
+    top: -70px;
+  }
+}
+
+.close-income-cost-gains {
+  animation: close-income-cost-gains 400ms;
+  animation-iteration-count: 1; /* 动画只执行一次*/
+  animation-fill-mode: forwards; /* 让动画停留在最后一帧 */
+  /* animation-timing-function: linear; */
+}
+
+@keyframes close-income-cost-gains {
+  from {
+    top: -70px;
+  }
+
+  to {
+    top: -45px;
+  }
+}
+
+.open-menu-drag-icon-rotate {
+  animation: open-menu-drag-icon-rotate 400ms;
+  animation-iteration-count: 1; /* 动画只执行一次 */
+  animation-fill-mode: forwards; /* 让动画停留在最后一帧 */
+  animation-timing-function: linear;
+}
+
+@keyframes open-menu-drag-icon-rotate {
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.close-menu-drag-icon-rotate {
+  animation: close-menu-drag-icon-rotate 400ms;
+  animation-iteration-count: 1; /* 动画只执行一次 */
+  animation-fill-mode: forwards; /* 让动画停留在最后一帧 */
+  animation-timing-function: linear;
+}
+
+@keyframes close-menu-drag-icon-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+.open-gear-dark-change {
+  animation: open-gear-dark-change 400ms;
+  animation-iteration-count: 1; /* 动画只执行一次 */
+  animation-fill-mode: forwards; /* 让动画停留在最后一帧 */
+  animation-timing-function: linear;
+}
+
+@keyframes open-gear-dark-change {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 133.6px;
+  }
+}
+
+.close-gear-dark-change {
+  animation: close-gear-dark-change 400ms;
+  animation-iteration-count: 1; /* 动画只执行一次 */
+  animation-fill-mode: forwards; /* 让动画停留在最后一帧 */
+  animation-timing-function: linear;
+}
+
+@keyframes close-gear-dark-change {
+  0% {
+    width: 133.6px;
+  }
+  100% {
+    width: 0;
+  }
+}

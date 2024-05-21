@@ -1,0 +1,150 @@
+/**
+ * 主题与页面设置 字号
+ * 18点02分
+ */
+// 大字号
+.container {
+  &.num-width-0 {
+    min-width: 360px;
+
+    /deep/ .el-tabs__header {
+      max-width: calc(360px - 15px);
+    }
+  }
+
+  &.num-width-1 {
+    min-width: 420px;
+
+    /deep/ .el-tabs__header {
+      max-width: calc(420px - 15px);
+    }
+  }
+
+  &.num-width-2 {
+    min-width: 480px;
+
+    /deep/ .el-tabs__header {
+      max-width: calc(480px - 15px);
+    }
+  }
+
+  &.num-width-3 {
+    min-width: 540px;
+
+    /deep/ .el-tabs__header {
+      max-width: calc(540px - 15px);
+    }
+  }
+
+  &.num-width-4 {
+    min-width: 610px;
+
+    /deep/ .el-tabs__header {
+      max-width: calc(610px - 15px);
+    }
+  }
+
+  &.num-width-5 {
+    min-width: 680px;
+
+    /deep/ .el-tabs__header {
+      max-width: calc(680px - 15px);
+    }
+  }
+
+  &.num-width-6 {
+    min-width: 710px;
+
+    /deep/ .el-tabs__header {
+      max-width: calc(710px - 15px);
+    }
+  }
+
+}
+
+// 标准字号
+.normalFontSize {
+  /* min-width: 450px; */
+  font-size: 14px;
+
+  &.num-width-0 {
+    min-width: 400px;
+
+    /deep/ .el-tabs__nav-scroll {
+      max-width: 400px;
+    }
+  }
+
+  &.num-width-1 {
+    min-width: 500px;
+
+    /deep/ .el-tabs__nav-scroll {
+      max-width: 500px;
+    }
+  }
+
+  &.num-width-2 {
+    min-width: 580px;
+
+    /deep/ .el-tabs__nav-scroll {
+      max-width: 580px;
+    }
+  }
+
+  &.num-width-3 {
+    min-width: 630px;
+
+    /deep/ .el-tabs__nav-scroll {
+      max-width: 630px;
+    }
+  }
+
+  &.num-width-4 {
+    min-width: 690px;
+
+    /deep/ .el-tabs__nav-scroll {
+      max-width: 690px;
+    }
+  }
+
+  &.num-width-5 {
+    min-width: 750px;
+
+    /deep/ .el-tabs__nav-scroll {
+      max-width: 750px;
+    }
+  }
+
+  &.num-width-6 {
+    min-width: 710px;
+
+    /deep/ .el-tabs__nav-scroll {
+      max-width: 710px;
+    }
+  }
+
+  .btn,
+  .tips {
+    font-size: 14px;
+  }
+
+  .tab-col {
+    h5 {
+      font-size: 14px;
+    }
+  }
+
+  .active-funds-tabs {
+    /deep/ .el-tabs__item {
+      font-size: 14px;
+    }
+  }
+
+  /deep/ .el-badge__content {
+    font-size: 14px;
+  }
+
+  /deep/ .el-tag {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>自选基金助手</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="popup.css">
+    <script src="https://jic.talkingdata.com/app/h5/v1?appid=78AC19A2FDB0465DA0B8B3C7802345A9&vn=v2.4.0&vc=2.4.0"></script>
+    <% if (NODE_ENV === 'development') { %>
+    <!-- Load some resources only in development environment -->
+    <% } %>
+</head>
+<style>
+    ::-webkit-scrollbar {
+        width: 7px;
+        height: 7px;
+        background-color: rgba(240, 240, 240, 1);
+    }
+
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 0px rgba(240, 240, 240, 0.5);
+        border-radius: 10px;
+        background-color: rgba(240, 240, 240, 0.5);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        box-shadow: inset 0 0 0px rgba(240, 240, 240, 0.5);
+        background-color: #cccccc;
+    }
+
+    a:link,
+    a:active,
+    a:visited,
+    a:hover {
+        color: #409eff;
+        text-decoration: none;
+    }
+
+    .darkMode a {
+        color: rgba(64, 158, 255, 0.6);
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .darkMode.grouping-model {
+        background-color: #373737;
+        .el-message-box__header > .el-message-box__title {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .el-message-box__content {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .el-message-box__btns {
+            .el-button {
+                background: rgba(255, 255, 255, 0.6);
+                border-color: rgba(220, 223, 230, 0.6);
+                color: rgb(0, 0, 0, 0.6);
+            }
+            .el-button--primary {
+                background-color: rgba(64, 158, 255, 0.6);
+                border-color: rgba(64, 158, 255, 0.6);
+                color: rgba(255, 255, 255, 0.6);
+            }
+        }
+    }
+
+    .grouping-model {
+        width: 300px;
+    }
+</style>
+
+<body style="margin:0">
+<div id="app">
+
+</div>
+<script src="popup.js"></script>
+</body>
+
+</html>

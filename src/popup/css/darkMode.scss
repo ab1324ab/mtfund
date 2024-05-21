@@ -1,0 +1,182 @@
+//暗黑主题
+.container.darkMode {
+  color: rgba($color: #ffffff, $alpha: 0.6);
+  background-color: #121212;
+
+  .refresh {
+    color: rgba($color: #409eff, $alpha: 0.6);
+  }
+
+  table th {
+    background-color: #2f2f2f;
+  }
+
+  .el-button {
+    background-color: #606266;
+  }
+
+  .el-button:focus, .el-button:hover {
+    background-color: rgba($color: #000000, $alpha: 0.1) !important;
+  }
+
+  .btn {
+    background-color: rgba($color: #ffffff, $alpha: 0.16);
+    color: rgba($color: #ffffff, $alpha: 0.6);
+    border: 1px solid rgba($color: #ffffff, $alpha: 0.6);
+  }
+
+  .btn-drag {
+    background-color: #606266;
+  }
+
+  .menu-drag {
+    background-color: #373737;
+  }
+
+  .primary {
+    border: 1px solid rgba($color: #409eff, $alpha: 0.6);
+    background-color: rgba($color: #409eff, $alpha: 0.6);
+  }
+
+  /deep/ .el-input__inner {
+    background-color: rgba($color: #ffffff, $alpha: 0.16);
+    color: rgba($color: #ffffff, $alpha: 0.6);
+  }
+
+  /deep/ .el-select__input {
+    color: rgba($color: #ffffff, $alpha: 0.6);
+  }
+
+  /deep/ tbody tr:hover {
+    background-color: rgba($color: #ffffff, $alpha: 0.12);
+  }
+
+  .slt {
+    border: 1px solid rgba($color: #67c23a, $alpha: 0.6);
+    background-color: rgba($color: #67c23a, $alpha: 0.6);
+  }
+
+  .btn.red {
+    border: 1px solid rgba($color: #f56c6c, $alpha: 0.6);
+    background-color: rgba($color: #f56c6c, $alpha: 0.6);
+  }
+
+  .btn-up {
+    border: 1px solid rgba($color: #f56c6c, $alpha: 0.6);
+    background-color: rgba($color: #f56c6c, $alpha: 0.6);
+  }
+
+  .btn-down {
+    border: 1px solid rgba($color: #4eb61b, $alpha: 0.6);
+    background-color: rgba($color: #4eb61b, $alpha: 0.6);
+  }
+
+  .tab-col {
+    background-color: rgba($color: #ffffff, $alpha: 0.09);
+    border-radius: 5px;
+  }
+
+  table {
+    background-color: rgba($color: #ffffff, $alpha: 0.12);
+    border-radius: 5px;
+  }
+
+  ::placeholder {
+    color: rgba($color: #ffffff, $alpha: 0.38);
+  }
+
+  /deep/ .el-select .el-input.is-focus .el-input__inner {
+    border-color: rgba($color: #409eff, $alpha: 0.6);
+  }
+
+  /deep/ .el-select .el-tag {
+    background-color: rgba($color: #ffffff, $alpha: 0.14);
+    color: rgba($color: #ffffff, $alpha: 0.6);
+  }
+
+  /deep/ .el-select-dropdown {
+    background-color: #383838;
+    border: 1px solid rgba($color: #ffffff, $alpha: 0.38);
+
+    .popper__arrow::after {
+      border-bottom-color: #383838;
+    }
+
+    .el-scrollbar {
+      background-color: rgba($color: #ffffff, $alpha: 0.16);
+    }
+
+    .el-select-dropdown__item {
+      color: rgba($color: #ffffff, $alpha: 0.6);
+    }
+
+    .el-select-dropdown__item.hover,
+    .el-select-dropdown__item:hover {
+      background-color: rgba($color: #ffffff, $alpha: 0.08);
+    }
+
+    .el-select-dropdown__item.selected {
+      color: rgba($color: #409eff, $alpha: 0.6);
+      background-color: rgba($color: #ffffff, $alpha: 0.08);
+    }
+
+    .el-select-dropdown__item.selected::after {
+      color: rgba($color: #409eff, $alpha: 0.6);
+    }
+  }
+
+  /deep/ .el-switch__label.is-active {
+    color: rgba($color: #409eff, $alpha: 0.87);
+  }
+
+  /deep/ .el-switch__label {
+    color: rgba($color: #ffffff, $alpha: 0.6);
+  }
+
+  /deep/ .hasReplace-tip {
+    color: rgba($color: #ffffff, $alpha: 0.6);
+    border: 1px solid rgba($color: #409eff, $alpha: 0.6);
+    background-color: rgba($color: #409eff, $alpha: 0.6);
+  }
+
+  /deep/ .el-slider__runway,
+  /deep/ .el-tooltip.el-slider__button,
+  /deep/ .el-switch.is-checked .el-switch__core::after {
+    background-color: rgba($color: #ffffff, $alpha: 0.6);
+  }
+
+  /deep/ .el-badge__content,
+  .el-content-danger /deep/ .el-tag--danger,
+  .el-content-success /deep/ .el-tag--success {
+    background-color: #606266;
+  }
+
+  .el-card {
+    background-color: #373737;
+    color: rgba($color: #ffffff, $alpha: 0.6);
+  }
+
+  svg {
+    filter: brightness(0.6) invert(78%) hue-rotate(180deg);
+  }
+
+  .active-funds-tabs {
+    /deep/ .el-tabs__header .el-tabs__item.is-active {
+      border-bottom-color: #2f2f2f;
+      background-color: #2f2f2f;
+    }
+
+    /deep/ .el-tabs__item {
+      color: rgba($color: #ffffff, $alpha: 0.6);
+    }
+
+    /deep/ .el-tabs__item:hover {
+      color: #409EFF;
+    }
+
+    /deep/ .el-tabs__item.is-active {
+      color: #409EFF;
+    }
+  }
+
+}
