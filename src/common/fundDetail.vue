@@ -1,27 +1,46 @@
 <template>
   <div v-if="boxShadow" class="shadow" :class="darkMode ? 'darkMode' : ''">
     <div class="content-box">
-      <h5>{{fund.name}}({{fund.fundcode}})</h5>
+      <h5>{{ fund.name }}({{ fund.fundcode }})</h5>
       <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
         <el-tab-pane lazy label="净值估算" name="first">
           <charts :darkMode="darkMode" :fund="fund" ref="first"></charts>
         </el-tab-pane>
         <el-tab-pane lazy label="持仓明细" name="ccmx">
-          <position-detail :darkMode="darkMode" @sltStock="sltStock" :fund="fund"></position-detail>
+          <position-detail
+            :darkMode="darkMode"
+            @sltStock="sltStock"
+            :fund="fund"
+          ></position-detail>
         </el-tab-pane>
         <el-tab-pane lazy label="历史净值" name="second">
-          <charts2 :darkMode="darkMode" :fund="fund" chartType="JZ" ref="second"></charts2>
+          <charts2
+            :darkMode="darkMode"
+            :fund="fund"
+            chartType="JZ"
+            ref="second"
+          ></charts2>
         </el-tab-pane>
         <el-tab-pane lazy label="累计收益" name="third">
-          <charts2 :darkMode="darkMode" :fund="fund" chartType="LJSY" ref="third"></charts2>
+          <charts2
+            :darkMode="darkMode"
+            :fund="fund"
+            chartType="LJSY"
+            ref="third"
+          ></charts2>
         </el-tab-pane>
         <el-tab-pane lazy label="基金概况" name="info">
-          <fund-info :darkMode="darkMode" :fund="fund" ref="info" @showManager="showManager"></fund-info>
+          <fund-info
+            :darkMode="darkMode"
+            :fund="fund"
+            ref="info"
+            @showManager="showManager"
+          ></fund-info>
         </el-tab-pane>
       </el-tabs>
 
       <div class="tab-row">
-        <input class="btn" type="button" value="返回列表" @click="close"/>
+        <input class="btn" type="button" value="返回列表" @click="close" />
       </div>
     </div>
     <ind-detail mini ref="indDetail" :darkMode="darkMode"></ind-detail>
@@ -44,28 +63,27 @@ export default {
     positionDetail,
     indDetail,
     fundInfo,
-    managerDetail,
+    managerDetail
   },
   name: "fundDetail",
   props: {
     darkMode: {
       type: Boolean,
-      default: false,
+      default: false
     },
     fund: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
       activeName: "second",
-      boxShadow: false,
+      boxShadow: false
     };
   },
   watch: {},
-  mounted() {
-  },
+  mounted() {},
   methods: {
     handleClick(tab, event) {
       this.activeName = tab.name;
@@ -83,8 +101,8 @@ export default {
     },
     sltStock(val) {
       this.$refs.indDetail.init(val);
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -123,10 +141,10 @@ export default {
     line-height: 33px;
   }
 
-  /deep/ .el-tabs__nav-next, /deep/ .el-tabs__nav-prev{
+  /deep/ .el-tabs__nav-next,
+  /deep/ .el-tabs__nav-prev {
     line-height: 33px;
   }
-
 }
 
 .btn {
@@ -219,13 +237,16 @@ export default {
     background-color: #373737;
   }
 
-  /deep/ .el-table--enable-row-hover .el-table__body tr:hover > td.el-table__cell {
-    background-color: rgba(0, 0, 0, .1);
+  /deep/
+    .el-table--enable-row-hover
+    .el-table__body
+    tr:hover
+    > td.el-table__cell {
+    background-color: rgba(0, 0, 0, 0.1);
   }
 
-  /deep/ .el-table__empty-block{
+  /deep/ .el-table__empty-block {
     background-color: #373737;
   }
-
 }
 </style>

@@ -1,34 +1,39 @@
 <template>
-  <div class="box" v-loading="loading" :element-loading-background="darkMode ? 'rgba(0, 0, 0, 0.9)' : 'rgba(255, 255, 255, 0.9)'">
+  <div
+    class="box"
+    v-loading="loading"
+    :element-loading-background="
+      darkMode ? 'rgba(0, 0, 0, 0.9)' : 'rgba(255, 255, 255, 0.9)'
+    "
+  >
     <h5>
-      <span v-if="expansion">截止日期：{{expansion}}</span>
+      <span v-if="expansion">截止日期：{{ expansion }}</span>
       <span v-else>暂无数据</span>
     </h5>
     <table>
       <thead>
-      <tr>
-        <th style="text-align: left;">股票名称 (代码)</th>
-        <th>价格</th>
-        <th>涨跌幅</th>
-        <th>持仓占比</th>
-        <th>较上期</th>
-      </tr>
+        <tr>
+          <th style="text-align: left;">股票名称 (代码)</th>
+          <th>价格</th>
+          <th>涨跌幅</th>
+          <th>持仓占比</th>
+          <th>较上期</th>
+        </tr>
       </thead>
       <tbody>
-      <tr v-for="(el, ind) in dataList" :key="el.GPDM" @click="openPage(ind)">
-        <td class="gpcode" style="text-align: left;">
-          {{el.GPJC + " (" + el.GPDM + ")"}}
-        </td>
-        <td>{{dataListGp[ind].f2.toFixed(2)}}</td>
-        <td :class="dataListGp[ind].f3 >= 0 ? 'up' : 'down'">
-          {{dataListGp[ind].f3.toFixed(2)}}%
-        </td>
-        <td>{{parseFloat(el.JZBL).toFixed(2)}}%</td>
-        <td>{{compared(el)}}</td>
-      </tr>
+        <tr v-for="(el, ind) in dataList" :key="el.GPDM" @click="openPage(ind)">
+          <td class="gpcode" style="text-align: left;">
+            {{ el.GPJC + " (" + el.GPDM + ")" }}
+          </td>
+          <td>{{ dataListGp[ind].f2.toFixed(2) }}</td>
+          <td :class="dataListGp[ind].f3 >= 0 ? 'up' : 'down'">
+            {{ dataListGp[ind].f3.toFixed(2) }}%
+          </td>
+          <td>{{ parseFloat(el.JZBL).toFixed(2) }}%</td>
+          <td>{{ compared(el) }}</td>
+        </tr>
       </tbody>
     </table>
-
   </div>
 </template>
 
@@ -42,12 +47,12 @@ export default {
   props: {
     darkMode: {
       type: Boolean,
-      default: false,
+      default: false
     },
     fund: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
@@ -63,7 +68,7 @@ export default {
   computed: {
     defaultColor() {
       return this.darkMode ? "rgba(255,255,255,0.6)" : "#ccc";
-    },
+    }
   },
   mounted() {
     this.init();
@@ -76,19 +81,19 @@ export default {
     getData() {
       this.loading = true;
       let url = `https://fundmobapi.eastmoney.com/FundMNewApi/FundMNInverstPosition?FCODE=${
-          this.fund.fundcode
+        this.fund.fundcode
       }&deviceid=Wap&plat=Wap&product=EFund&version=2.0.0&Uid=&_=${new Date().getTime()}`;
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url).then(res => {
         let dataList = res.data.Datas.fundStocks;
         if (dataList) {
           let gpList = dataList
-              .map((val) => {
-                return val.NEWTEXCH + "." + val.GPDM;
-              })
-              .join(",");
+            .map(val => {
+              return val.NEWTEXCH + "." + val.GPDM;
+            })
+            .join(",");
 
           let gpUrl = `https://push2.eastmoney.com/api/qt/ulist.np/get?fields=f1,f2,f3,f4,f12,f13,f14,f292&fltt=2&secids=${gpList}&deviceid=Wap&plat=Wap&product=EFund&version=2.0.0&Uid=`;
-          this.$axios.get(gpUrl).then((resGp) => {
+          this.$axios.get(gpUrl).then(resGp => {
             this.loading = false;
             this.dataListGp = resGp.data.data.diff;
             this.dataList = dataList;
@@ -117,8 +122,8 @@ export default {
         let icon = val.PCTNVCHG > 0 ? "↑ " : "↓ ";
         return icon + Math.abs(parseFloat(val.PCTNVCHG)).toFixed(2) + "%";
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

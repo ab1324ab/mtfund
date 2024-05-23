@@ -1,30 +1,37 @@
 <template>
   <div v-if="boxShadow" class="shadow" :class="boxClass">
     <div class="manager-box">
-      <div v-loading="loadingManager" :element-loading-background="darkMode ? 'rgba(0, 0, 0, 0.9)' : 'rgba(255, 255, 255, 0.9)' " class="manager-content" ref="manager">
+      <div
+        v-loading="loadingManager"
+        :element-loading-background="
+          darkMode ? 'rgba(0, 0, 0, 0.9)' : 'rgba(255, 255, 255, 0.9)'
+        "
+        class="manager-content"
+        ref="manager"
+      >
         <div>
           <h5>基金经理变动一览</h5>
           <div class="table-row">
             <table>
               <thead>
-              <tr>
-                <th>起始期</th>
-                <th>截止期</th>
-                <th>基金经理</th>
-                <th>任职期</th>
-                <th>任职涨幅</th>
-              </tr>
+                <tr>
+                  <th>起始期</th>
+                  <th>截止期</th>
+                  <th>基金经理</th>
+                  <th>任职期</th>
+                  <th>任职涨幅</th>
+                </tr>
               </thead>
               <tbody>
-              <tr v-for="el in managerList" :key="el.MGRID">
-                <td>{{el.FEMPDATE}}</td>
-                <td>{{el.LEMPDATE == "" ? "至今" : el.LEMPDATE}}</td>
-                <td>{{el.MGRNAME}}</td>
-                <td>{{el.DAYS.toFixed(0)}}天</td>
-                <td :class="el.PENAVGROWTH >= 0 ? 'up' : 'down'">
-                  {{el.PENAVGROWTH.toFixed(2)}}%
-                </td>
-              </tr>
+                <tr v-for="el in managerList" :key="el.MGRID">
+                  <td>{{ el.FEMPDATE }}</td>
+                  <td>{{ el.LEMPDATE == "" ? "至今" : el.LEMPDATE }}</td>
+                  <td>{{ el.MGRNAME }}</td>
+                  <td>{{ el.DAYS.toFixed(0) }}天</td>
+                  <td :class="el.PENAVGROWTH >= 0 ? 'up' : 'down'">
+                    {{ el.PENAVGROWTH.toFixed(2) }}%
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -32,21 +39,21 @@
           <div v-for="el in managerDetail" :key="el.MGRID">
             <div class="manager-info">
               <div class="img-row">
-                <img :src="el.PHOTOURL" :alt="el.MGRNAME"/>
+                <img :src="el.PHOTOURL" :alt="el.MGRNAME" />
               </div>
               <div class="info-row">
-                <p>姓名：{{el.MGRNAME}}</p>
-                <p>上任日期：{{el.FEMPDATE}}</p>
-                <p>管理年限：{{el.DAYS}}</p>
+                <p>姓名：{{ el.MGRNAME }}</p>
+                <p>上任日期：{{ el.FEMPDATE }}</p>
+                <p>管理年限：{{ el.DAYS }}</p>
               </div>
             </div>
-            <div class="manager-resume">{{el.RESUME}}</div>
+            <div class="manager-resume">{{ el.RESUME }}</div>
           </div>
         </div>
       </div>
 
       <div class="tab-row">
-        <input class="btn" type="button" value="返回列表" @click="close"/>
+        <input class="btn" type="button" value="返回列表" @click="close" />
       </div>
     </div>
   </div>
@@ -58,15 +65,15 @@ export default {
   props: {
     darkMode: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
       boxShadow: false,
       loadingManager: false,
       managerList: [],
-      managerDetail: [],
+      managerDetail: []
     };
   },
   watch: {},
@@ -77,10 +84,9 @@ export default {
         className += "darkMode ";
       }
       return className;
-    },
+    }
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     init(val) {
       this.boxShadow = true;
@@ -89,20 +95,20 @@ export default {
     },
     getManagerList(code) {
       let url = `https://fundmobapi.eastmoney.com/FundMApi/FundManagerList.ashx?FCODE=${code}&deviceid=Wap&plat=Wap&product=EFund&version=2.0.0&Uid=&_=${new Date().getTime()}`;
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url).then(res => {
         this.managerList = res.data.Datas;
       });
     },
     getMangerDetail(code) {
       let url = `https://fundmobapi.eastmoney.com/FundMApi/FundMangerDetail.ashx?FCODE=${code}&deviceid=Wap&plat=Wap&product=EFund&version=2.0.0&Uid=&_=${new Date().getTime()}`;
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url).then(res => {
         this.managerDetail = res.data.Datas;
       });
     },
     close() {
       this.boxShadow = false;
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -1,8 +1,8 @@
 <template>
   <div
-      class="box"
-      v-loading="loading"
-      :element-loading-background="
+    class="box"
+    v-loading="loading"
+    :element-loading-background="
       darkMode ? 'rgba(0, 0, 0, 0.9)' : 'rgba(255, 255, 255, 0.9)'
     "
   >
@@ -11,44 +11,43 @@
         <div>
           <div>近1月(排名)</div>
           <p :class="infoData.SYL_Y > 0 ? 'up' : 'down'">
-            {{infoData.SYL_Y}}%（{{infoData.RANKM}}）
+            {{ infoData.SYL_Y }}%（{{ infoData.RANKM }}）
           </p>
         </div>
         <div>
           <div>近3月(排名)</div>
           <p :class="infoData.SYL_3Y > 0 ? 'up' : 'down'">
-            {{infoData.SYL_3Y}}%（{{infoData.RANKQ}}）
+            {{ infoData.SYL_3Y }}%（{{ infoData.RANKQ }}）
           </p>
         </div>
         <div>
           <div>近6月(排名)</div>
           <p :class="infoData.SYL_6Y > 0 ? 'up' : 'down'">
-            {{infoData.SYL_6Y}}%（{{infoData.RANKHY}}）
+            {{ infoData.SYL_6Y }}%（{{ infoData.RANKHY }}）
           </p>
         </div>
         <div>
           <div>近1年(排名)</div>
           <p :class="infoData.SYL_1N > 0 ? 'up' : 'down'">
-            {{infoData.SYL_1N}}%（{{infoData.RANKY}}）
+            {{ infoData.SYL_1N }}%（{{ infoData.RANKY }}）
           </p>
         </div>
       </div>
-      <div>单位净值：{{infoData.DWJZ}}（{{infoData.FSRQ}}）</div>
-      <div>累计净值：{{infoData.LJJZ}}</div>
-      <div>基金类型：{{infoData.FTYPE}}</div>
-      <div>基金公司：{{infoData.JJGS}}</div>
+      <div>单位净值：{{ infoData.DWJZ }}（{{ infoData.FSRQ }}）</div>
+      <div>累计净值：{{ infoData.LJJZ }}</div>
+      <div>基金类型：{{ infoData.FTYPE }}</div>
+      <div>基金公司：{{ infoData.JJGS }}</div>
       <div class="hover" @click="showManager">
-        基金经理：{{infoData.JJJL}}
+        基金经理：{{ infoData.JJJL }}
       </div>
-      <div>交易状态：{{infoData.SGZT}} {{infoData.SHZT}}</div>
-      <div>基金规模：{{numberFormat(infoData.ENDNAV)}}</div>
+      <div>交易状态：{{ infoData.SGZT }} {{ infoData.SHZT }}</div>
+      <div>基金规模：{{ numberFormat(infoData.ENDNAV) }}</div>
       <div v-if="infoData.FUNDBONUS">
-        分红状态：{{infoData.FUNDBONUS.PDATE}}日，每份基金份额折算{{
+        分红状态：{{ infoData.FUNDBONUS.PDATE }}日，每份基金份额折算{{
           infoData.FUNDBONUS.CHGRATIO
         }}份
       </div>
     </div>
-
   </div>
 </template>
 
@@ -62,18 +61,17 @@ export default {
   props: {
     darkMode: {
       type: Boolean,
-      default: false,
+      default: false
     },
     fund: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
       infoData: {},
-      loading: false,
-
+      loading: false
     };
   },
 
@@ -81,7 +79,7 @@ export default {
   computed: {
     defaultColor() {
       return this.darkMode ? "rgba(255,255,255,0.6)" : "#ccc";
-    },
+    }
   },
   mounted() {
     this.init();
@@ -93,8 +91,10 @@ export default {
 
     getData() {
       this.loading = true;
-      let url = `https://fundmobapi.eastmoney.com/FundMApi/FundBaseTypeInformation.ashx?FCODE=${this.fund.fundcode}&deviceid=Wap&plat=Wap&product=EFund&version=2.0.0&Uid=&_=${new Date().getTime()}`;
-      this.$axios.get(url).then((res) => {
+      let url = `https://fundmobapi.eastmoney.com/FundMApi/FundBaseTypeInformation.ashx?FCODE=${
+        this.fund.fundcode
+      }&deviceid=Wap&plat=Wap&product=EFund&version=2.0.0&Uid=&_=${new Date().getTime()}`;
+      this.$axios.get(url).then(res => {
         this.loading = false;
         this.infoData = res.data.Datas;
         // let dataList = res.data.Datas.fundStocks;
@@ -104,8 +104,8 @@ export default {
     numberFormat(value) {
       var param = {};
       var k = 10000,
-          sizes = ["", "万", "亿", "万亿"],
-          i;
+        sizes = ["", "万", "亿", "万亿"],
+        i;
       if (value < k) {
         param.value = value;
         param.unit = "";
@@ -122,8 +122,8 @@ export default {
     },
     close() {
       this.boxShadow = false;
-    },
-  },
+    }
+  }
 };
 </script>
 

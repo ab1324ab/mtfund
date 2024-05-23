@@ -51,8 +51,8 @@ export default {
   props: {
     darkMode: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
@@ -432,16 +432,16 @@ export default {
         "16:07",
         "16:08",
         "16:09",
-        "16:10",
+        "16:10"
       ],
-      lastDataList: [0, 0, 0, 0, 0, 0],
+      lastDataList: [0, 0, 0, 0, 0, 0]
     };
   },
   watch: {},
   computed: {
     defaultColor() {
       return this.darkMode ? "rgba(255,255,255,0.6)" : "#ccc";
-    },
+    }
   },
   mounted() {
     this.init();
@@ -458,7 +458,7 @@ export default {
       );
       this.option = {
         tooltip: {
-          trigger: "axis",
+          trigger: "axis"
           // formatter: (p) => {
           //   return `时间：${p[0].name}<br />${
           //     this.chartTypeList[this.chartType].name
@@ -468,48 +468,48 @@ export default {
         grid: {
           top: 55,
           bottom: 30,
-          right: 30,
+          right: 30
         },
         xAxis: {
           type: "category",
           data: this.timeData,
           axisLabel: {
             formatter: this.fmtAxis,
-            interval: this.fmtVal,
+            interval: this.fmtVal
           },
           axisLine: {
-            onZero: false,
-          },
+            onZero: false
+          }
         },
         yAxis: {
           type: "value",
           name: "单位：亿元",
           scale: true,
           axisLabel: {
-            color: this.defaultColor,
+            color: this.defaultColor
           },
           splitLine: {
             show: true,
             lineStyle: {
               type: "dashed",
-              color: this.defaultColor,
-            },
+              color: this.defaultColor
+            }
           },
-          data: [],
+          data: []
         },
         series: [
           {
             type: "line",
-            data: [],
-          },
-        ],
+            data: []
+          }
+        ]
       };
       this.getData();
     },
     getData() {
       this.loading = true;
       let url = `http://push2.eastmoney.com/api/qt/kamt.rtmin/get?fields1=f1,f2,f3,f4&fields2=f51,f52,f53,f54,f55,f56&ut=&?v=${new Date().getTime()}`;
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url).then(res => {
         this.loading = false;
         let data = res.data.data;
         // console.log(data, data.n2s);
@@ -520,7 +520,7 @@ export default {
         let data5 = [];
 
         if (dataList) {
-          dataList.forEach((el) => {
+          dataList.forEach(el => {
             let arr = el.split(",");
 
             if (arr[1] != "-") {
@@ -532,24 +532,24 @@ export default {
             data5.push((arr[5] / 10000).toFixed(4));
           });
           this.option.legend = {
-            show: true,
+            show: true
           };
           this.option.series = [
             {
               type: "line",
               name: "港股通（沪）",
-              data: data1,
+              data: data1
             },
             {
               type: "line",
               name: "港股通（深）",
-              data: data3,
+              data: data3
             },
             {
               type: "line",
               name: "南向资金",
-              data: data5,
-            },
+              data: data5
+            }
           ];
           this.myChart.setOption(this.option);
         }
@@ -569,8 +569,8 @@ export default {
       } else {
         return false;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

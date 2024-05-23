@@ -1,10 +1,18 @@
 <template>
   <div v-if="boxShadow" class="shadow" :class="boxClass">
     <div class="content-box">
-      <h5>{{codeData.f14}}({{codeData.f13 + "." + codeData.f12}})</h5>
-      <div v-loading="loading" :element-loading-background="darkMode ? 'rgba(0, 0, 0, 0.9)' : 'rgba(255, 255, 255, 0.9)'" :class="mini ? 'mini-charts' : ''" class="main-echarts" ref="mainCharts"></div>
+      <h5>{{ codeData.f14 }}({{ codeData.f13 + "." + codeData.f12 }})</h5>
+      <div
+        v-loading="loading"
+        :element-loading-background="
+          darkMode ? 'rgba(0, 0, 0, 0.9)' : 'rgba(255, 255, 255, 0.9)'
+        "
+        :class="mini ? 'mini-charts' : ''"
+        class="main-echarts"
+        ref="mainCharts"
+      ></div>
       <div class="tab-row">
-        <input class="btn" type="button" value="返回列表" @click="close"/>
+        <input class="btn" type="button" value="返回列表" @click="close" />
       </div>
     </div>
   </div>
@@ -26,12 +34,12 @@ export default {
   props: {
     mini: {
       type: Boolean,
-      default: false,
+      default: false
     },
     darkMode: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
@@ -48,7 +56,7 @@ export default {
       loading: false,
       dataList: [],
       timeData: [],
-      isHK: false,
+      isHK: false
     };
   },
   watch: {},
@@ -68,7 +76,7 @@ export default {
         className += "mini";
       }
       return className;
-    },
+    }
   },
   mounted() {
     // this.init();
@@ -92,8 +100,8 @@ export default {
     initChart() {
       this.chartEL = this.$refs.mainCharts;
       this.myChart = echarts.init(
-          this.chartEL,
-          this.darkMode ? "dark" : "customed"
+        this.chartEL,
+        this.darkMode ? "dark" : "customed"
       );
 
       this.option = {
@@ -104,14 +112,16 @@ export default {
             label: {
               show: true,
               color: this.defaultColor,
-              backgroundColor: this.darkMode ? "rgba(0,0,0,0.8)" : "rgba(0,0,0,0.6)",
-            },
+              backgroundColor: this.darkMode
+                ? "rgba(0,0,0,0.8)"
+                : "rgba(0,0,0,0.6)"
+            }
           },
-          formatter: (p) => {
+          formatter: p => {
             var color;
             if (
-                p[0].dataIndex == 0 ||
-                this.dataList[p[0].dataIndex][1] >
+              p[0].dataIndex == 0 ||
+              this.dataList[p[0].dataIndex][1] >
                 this.dataList[p[0].dataIndex - 1][1]
             ) {
               color = '#f56c6c"';
@@ -119,40 +129,40 @@ export default {
               color = '#4eb61b"';
             }
             return `时间：${p[0].name}<br />价格：${
-                this.dataList[p[0].dataIndex][1]
+              this.dataList[p[0].dataIndex][1]
             }<br />涨幅：${(
-                ((this.dataList[p[0].dataIndex][1] - this.DWJZ) * 100) /
-                this.DWJZ
+              ((this.dataList[p[0].dataIndex][1] - this.DWJZ) * 100) /
+              this.DWJZ
             ).toFixed(
-                2
+              2
             )}%<br /><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:${color}"></span>成交量：${this.formatNum(
-                this.dataList[p[0].dataIndex][2]
+              this.dataList[p[0].dataIndex][2]
             )}`;
-          },
+          }
         },
         axisPointer: {
-          link: {xAxisIndex: "all"},
+          link: { xAxisIndex: "all" }
         },
         grid: [
           {
             top: 20,
             left: 60,
-            height: "50%",
+            height: "50%"
           },
           {
             show: true,
             left: 60,
             top: "65%",
-            height: "28%", //交易量图的高度
-          },
+            height: "28%" //交易量图的高度
+          }
         ],
         xAxis: [
           {
             data: this.timeData,
             position: "bottom",
             axisLine: {
-              onZero: false,
-            },
+              onZero: false
+            }
           },
           {
             //交易量图
@@ -163,88 +173,94 @@ export default {
             data: this.timeData,
 
             axisTick: {
-              show: false,
+              show: false
             },
             splitLine: {
               //分割线设置
               show: true,
               lineStyle: {
                 type: "dashed",
-                color: this.defaultColor,
-              },
+                color: this.defaultColor
+              }
             },
             axisLine: {
-              lineStyle: {},
+              lineStyle: {}
             },
             axisPointer: {
               show: true,
               label: {
-                formatter: (p) => {
-                  if (p.seriesData[0] && this.dataList[p.seriesData[0].dataIndex]) {
-                    var _p = (this.dataList[p.seriesData[0].dataIndex][2] / 10000).toFixed(3) + "万";
+                formatter: p => {
+                  if (
+                    p.seriesData[0] &&
+                    this.dataList[p.seriesData[0].dataIndex]
+                  ) {
+                    var _p =
+                      (
+                        this.dataList[p.seriesData[0].dataIndex][2] / 10000
+                      ).toFixed(3) + "万";
                     return _p;
                   }
-                },
-              },
-            },
-          },
+                }
+              }
+            }
+          }
         ],
         yAxis: [
           {
             type: "value",
             axisLabel: {
               color: this.yAxisLabelColor,
-              formatter: (val) => {
+              formatter: val => {
                 return val.toFixed(2);
-              },
+              }
             },
             splitLine: {
               show: true,
               lineStyle: {
                 type: "dashed",
-                color: this.defaultColor,
-              },
+                color: this.defaultColor
+              }
             },
             data: [],
             axisPointer: {
               show: true,
               label: {
-                formatter: function (params) {
+                formatter: function(params) {
                   return params.value.toFixed(2);
-                },
-              },
-            },
+                }
+              }
+            }
           },
           {
             type: "value",
             axisLabel: {
               color: this.yAxisLabelColor,
-              formatter: (val) => {
+              formatter: val => {
                 let num = (((val - this.DWJZ) * 100) / this.DWJZ).toFixed(2);
-                if (num == -0.00) {
+                if (num == -0.0) {
                   num = "0.00";
                 }
                 return num + "%";
-              },
+              }
             },
             splitLine: {
               show: true,
               lineStyle: {
                 type: "dashed",
-                color: this.defaultColor,
-              },
+                color: this.defaultColor
+              }
             },
             axisPointer: {
               show: true,
               label: {
-                formatter: (p) => {
+                formatter: p => {
                   return (
-                      (((p.value - this.DWJZ) * 100) / this.DWJZ).toFixed(2) + "%"
+                    (((p.value - this.DWJZ) * 100) / this.DWJZ).toFixed(2) + "%"
                   );
-                },
-              },
+                }
+              }
             },
-            data: [],
+            data: []
           },
           {
             //交易图
@@ -256,24 +272,24 @@ export default {
             splitNumber: 3,
             axisLine: {
               onZero: false,
-              show: false,
+              show: false
             },
             axisTick: {
-              show: false,
+              show: false
             },
 
             splitLine: {
               //分割线设置
-              show: false,
+              show: false
             },
             axisPointer: {
               show: true,
               label: {
-                formatter: function (params) {
+                formatter: function(params) {
                   var _p = (params.value / 10000).toFixed(2) + "万";
                   return _p;
-                },
-              },
+                }
+              }
             },
             axisLabel: {
               //label文字设置
@@ -281,16 +297,16 @@ export default {
               inside: false, //label文字朝内对齐
               fontSize: 10,
               onZero: false,
-              formatter: function (params) {
+              formatter: function(params) {
                 //计算右边Y轴对应的当前价的涨幅比例
                 var _p = (params / 10000).toFixed(2);
                 if (params == 0) {
                   _p = "(万)";
                 }
                 return _p;
-              },
-            },
-          },
+              }
+            }
+          }
         ],
         series: [
           {
@@ -302,17 +318,17 @@ export default {
               symbol: "none",
               animation: false,
               label: {
-                show: false,
+                show: false
               },
               lineStyle: {
-                type: "solid",
+                type: "solid"
               },
               data: [
                 {
-                  yAxis: 0,
-                },
-              ],
-            },
+                  yAxis: 0
+                }
+              ]
+            }
           },
           {
             name: "价格",
@@ -321,8 +337,8 @@ export default {
             symbol: "none",
             data: [],
             lineStyle: {
-              width: 0,
-            },
+              width: 0
+            }
           },
           {
             name: "成交量",
@@ -332,10 +348,10 @@ export default {
             yAxisIndex: 2,
             data: [],
             itemStyle: {
-              color: this.CJcolor,
-            },
-          },
-        ],
+              color: this.CJcolor
+            }
+          }
+        ]
       };
       this.getData();
     },
@@ -376,8 +392,8 @@ export default {
     CJcolor(val, ind) {
       var colorList;
       if (
-          val.dataIndex == 0 ||
-          this.dataList[val.dataIndex][1] > this.dataList[val.dataIndex - 1][1]
+        val.dataIndex == 0 ||
+        this.dataList[val.dataIndex][1] > this.dataList[val.dataIndex - 1][1]
       ) {
         colorList = "#f56c6c";
       } else {
@@ -387,10 +403,10 @@ export default {
     },
     yAxisLabelColor(val, ind) {
       return Number(val).toFixed(2) > this.DWJZ.toFixed(2)
-          ? "#f56c6c"
-          : Number(val).toFixed(2) == this.DWJZ.toFixed(2)
-              ? this.defaultLabelColor
-              : "#4eb61b";
+        ? "#f56c6c"
+        : Number(val).toFixed(2) == this.DWJZ.toFixed(2)
+        ? this.defaultLabelColor
+        : "#4eb61b";
     },
     handle_num(data) {
       var _aa = Math.abs((Math.max.apply(null, data) - this.DWJZ) / this.DWJZ);
@@ -400,17 +416,17 @@ export default {
     getData() {
       this.loading = true;
       let url = `https://push2.eastmoney.com/api/qt/stock/trends2/get?secid=${this.code}&fields1=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13&fields2=f51,f53,f56,f58&iscr=0&iscca=0&ndays=1&forcect=1`;
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url).then(res => {
         // console.log("getData");
         // console.log(res);
         this.loading = false;
         this.DWJZ = res.data.data.prePrice;
-        let dataList = res.data.data.trends.map((item) => item.split(","));
+        let dataList = res.data.data.trends.map(item => item.split(","));
         this.dataList = dataList;
 
-        this.option.series[0].data = dataList.map((item) => +item[1]);
-        this.option.series[1].data = dataList.map((item) => +item[1]);
-        this.option.series[2].data = dataList.map((item) => +item[2]);
+        this.option.series[0].data = dataList.map(item => +item[1]);
+        this.option.series[1].data = dataList.map(item => +item[1]);
+        this.option.series[2].data = dataList.map(item => +item[2]);
 
         let firstDate = dataList[0][0].substr(11, 5);
         // console.log(firstDate);
@@ -420,11 +436,11 @@ export default {
           this.timeData = this.time_arr("hs");
           this.option.xAxis[0].axisLabel = {
             formatter: this.fmtAxis,
-            interval: this.fmtVal,
+            interval: this.fmtVal
           };
           this.option.xAxis[1].axisLabel = {
             formatter: this.fmtAxis,
-            interval: this.fmtVal,
+            interval: this.fmtVal
           };
         } else {
           switch (firstDate) {
@@ -433,11 +449,11 @@ export default {
               this.isHK = true;
               this.option.xAxis[0].axisLabel = {
                 formatter: this.fmtAxis,
-                interval: this.fmtVal,
+                interval: this.fmtVal
               };
               this.option.xAxis[1].axisLabel = {
                 formatter: this.fmtAxis,
-                interval: this.fmtVal,
+                interval: this.fmtVal
               };
               break;
             case "21:30":
@@ -529,8 +545,8 @@ export default {
         mins = tmpMinsVal.length > 1 ? tmpMinsVal : "0" + tmpMinsVal; //不大于整除60
       }
       return hour + ":" + mins;
-    },
-  },
+    }
+  }
 };
 </script>
 

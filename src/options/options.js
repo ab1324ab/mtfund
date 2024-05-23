@@ -10,23 +10,22 @@ import {
   Input,
   Loading,
   Dialog
-} from 'element-ui';
+} from "element-ui";
 
 import VueClipboard from "vue-clipboard2";
-Vue.use(VueClipboard)
+Vue.use(VueClipboard);
 
-
-Vue.use(Switch)
-Vue.use(Radio)
-Vue.use(RadioGroup)
-Vue.use(Button)
-Vue.use(Input)
-Vue.use(Dialog)
-Vue.use(Loading)
+Vue.use(Switch);
+Vue.use(Radio);
+Vue.use(RadioGroup);
+Vue.use(Button);
+Vue.use(Input);
+Vue.use(Dialog);
+Vue.use(Loading);
 
 Vue.prototype.$axios = axios;
 Vue.prototype.$message = Message;
-Vue.prototype.$ELEMENT = { size: 'mini' };
+Vue.prototype.$ELEMENT = { size: "mini" };
 
 Vue.use(Loading.directive);
 Vue.prototype.$loading = Loading.service;

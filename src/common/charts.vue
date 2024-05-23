@@ -1,35 +1,56 @@
 <template>
   <div style="height: 285px;">
-    <div :style="'text-align: left;text-indent: 1.5em;z-index: 1;position: relative;height: 23px;line-height: 23px;background-color:'+ (darkMode ? 'rgba(55, 55, 55, 1)' : 'rgba(255, 255, 255, 1)')">
+    <div
+      :style="
+        'text-align: left;text-indent: 1.5em;z-index: 1;position: relative;height: 23px;line-height: 23px;background-color:' +
+          (darkMode ? 'rgba(55, 55, 55, 1)' : 'rgba(255, 255, 255, 1)')
+      "
+    >
       <span>
         <span>净值估算：</span>
-        <span style="font-weight: bold;" :class="expansion.GSZZL >= 0 ? 'up': 'down'">
-          {{expansion.GSZ}}
-          <span style="margin-left: 5px;"> {{expansion.GSZZL}}% </span>
+        <span
+          style="font-weight: bold;"
+          :class="expansion.GSZZL >= 0 ? 'up' : 'down'"
+        >
+          {{ expansion.GSZ }}
+          <span style="margin-left: 5px;"> {{ expansion.GSZZL }}% </span>
           <!--          <span style="margin-left: 5px;"> {{expansion.GZZF}} </span>-->
         </span>
       </span>
       <span style="font-weight: bold;">
         <span style="margin-left: 5px;color: #5e89ff">
-          MA5: <span>{{ma5day}}</span>
+          MA5: <span>{{ ma5day }}</span>
         </span>
         <span style="margin-left: 5px;color: #e6b23f">
-          MA10: <span>{{ma10day}}</span>
+          MA10: <span>{{ ma10day }}</span>
         </span>
         <span style="margin-left: 5px;color: #ff53ff">
-          MA20: <span>{{ma20day}}</span>
+          MA20: <span>{{ ma20day }}</span>
         </span>
       </span>
-      <span style="position: absolute;right: 30px;">{{expansion.GZTIME}}</span>
+      <span style="position: absolute;right: 30px;">{{
+        expansion.GZTIME
+      }}</span>
     </div>
     <!--    <div v-loading="loading" :element-loading-background="darkMode ? 'rgba(0, 0, 0, 0.9)' : 'rgba(255, 255, 255, 0.9)'" class="main-echarts" ref="mainCharts"></div>-->
-    <img :style="'height: 285px;width: 100%;position: relative;top: -18px;filter:'+(darkMode? 'brightness(1.2) invert(78%) hue-rotate(180deg)':'brightness(1.2)')" :src="detailsImg">
-    <div class="lien" style="top: 48px;"/>
-    <div class="lien" style="top: 103px;"/>
-    <div class="lien" style="top: 130px;border-bottom: 2px solid #909399;"/>
-    <div class="lien" style="top: 35px;width: 0;height: 230px;left: 50%;border-left: 1px dashed rgba(144, 147, 153, 0.5);"/>
-    <div class="lien" style="top: 185px;"/>
-    <div class="lien" style="top: 240px;border-bottom: 1px solid #909399;"/>
+    <img
+      :style="
+        'height: 285px;width: 100%;position: relative;top: -18px;filter:' +
+          (darkMode
+            ? 'brightness(1.2) invert(78%) hue-rotate(180deg)'
+            : 'brightness(1.2)')
+      "
+      :src="detailsImg"
+    />
+    <div class="lien" style="top: 48px;" />
+    <div class="lien" style="top: 103px;" />
+    <div class="lien" style="top: 130px;border-bottom: 2px solid #909399;" />
+    <div
+      class="lien"
+      style="top: 35px;width: 0;height: 230px;left: 50%;border-left: 1px dashed rgba(144, 147, 153, 0.5);"
+    />
+    <div class="lien" style="top: 185px;" />
+    <div class="lien" style="top: 240px;border-bottom: 1px solid #909399;" />
   </div>
 </template>
 
@@ -37,7 +58,7 @@
 let echarts = require("echarts/lib/echarts");
 import "./js/customed.js";
 import "./js/dark.js";
-import {formatDateTime} from '@/common/js/utils';
+import { formatDateTime } from "@/common/js/utils";
 
 require("echarts/lib/chart/line");
 require("echarts/lib/component/tooltip");
@@ -48,12 +69,12 @@ export default {
   props: {
     darkMode: {
       type: Boolean,
-      default: false,
+      default: false
     },
     fund: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
@@ -308,7 +329,7 @@ export default {
         "14:57",
         "14:58",
         "14:59",
-        "15:00",
+        "15:00"
       ],
       ma5day: null,
       ma10day: null,
@@ -324,7 +345,7 @@ export default {
     },
     defaultLabelColor() {
       return this.darkMode ? "rgba(255,255,255,0.6)" : "#000";
-    },
+    }
   },
   mounted() {
     this.init();
@@ -439,10 +460,35 @@ export default {
         this.averageMa4 = res.averageMa4 ? res.averageMa4 : {};
         this.monitorFund4 = res.monitorFund4 ? res.monitorFund4 : {};
         var gsz = parseFloat(this.fund.gsz);
-        this.ma5day = ((this.monitorFund4[this.fund.fundcode].slice(0, 4).reduce((prev, cur) => prev + parseFloat(cur.DWJZ), 0) + gsz) / 5).toFixed(4);
-        this.ma10day = ((this.monitorFund4[this.fund.fundcode].slice(0, 9).reduce((prev, cur) => prev + parseFloat(cur.DWJZ), 0) + gsz) / 10).toFixed(4);
-        this.ma20day = ((this.monitorFund4[this.fund.fundcode].slice(0, 19).reduce((prev, cur) => prev + parseFloat(cur.DWJZ), 0) + gsz) / 20).toFixed(4);
-        console.info("ma5day=" + this.ma5day + " ma10day=" + this.ma10day + " ma20day=" + this.ma20day)
+        this.ma5day = (
+          (this.monitorFund4[this.fund.fundcode]
+            .slice(0, 4)
+            .reduce((prev, cur) => prev + parseFloat(cur.DWJZ), 0) +
+            gsz) /
+          5
+        ).toFixed(4);
+        this.ma10day = (
+          (this.monitorFund4[this.fund.fundcode]
+            .slice(0, 9)
+            .reduce((prev, cur) => prev + parseFloat(cur.DWJZ), 0) +
+            gsz) /
+          10
+        ).toFixed(4);
+        this.ma20day = (
+          (this.monitorFund4[this.fund.fundcode]
+            .slice(0, 19)
+            .reduce((prev, cur) => prev + parseFloat(cur.DWJZ), 0) +
+            gsz) /
+          20
+        ).toFixed(4);
+        console.info(
+          "ma5day=" +
+            this.ma5day +
+            " ma10day=" +
+            this.ma10day +
+            " ma20day=" +
+            this.ma20day
+        );
         this.getData();
       });
     },
@@ -462,7 +508,11 @@ export default {
       }
     },
     yAxisLabelColor(val, ind) {
-      return val > 0 ? "#f56c6c" : val == 0 ? this.defaultLabelColor : "#4eb61b";
+      return val > 0
+        ? "#f56c6c"
+        : val == 0
+        ? this.defaultLabelColor
+        : "#4eb61b";
     },
     handle_num(data) {
       var _aa = Math.abs(Math.max.apply(null, data)).toFixed(2);
@@ -475,14 +525,20 @@ export default {
       // this.$axios.get(imgUrl).then((res) => {
       //   console.info(res)
       // });
-      console.info(this.fund)
+      console.info(this.fund);
       this.expansion = {
         GSZZL: this.fund.gszzl,
         GSZ: this.fund.gsz,
-        GZTIME: this.fund.gztime,
-      }
-      let ymdhms = "?v=" + formatDateTime(new Date(), 'yyyyMMddhhmmss');
-      this.detailsImg = this.valuaDetails + this.fund.fundcode + ".png" + ymdhms + "?v=" + Math.random()
+        GZTIME: this.fund.gztime
+      };
+      let ymdhms = "?v=" + formatDateTime(new Date(), "yyyyMMddhhmmss");
+      this.detailsImg =
+        this.valuaDetails +
+        this.fund.fundcode +
+        ".png" +
+        ymdhms +
+        "?v=" +
+        Math.random();
       // this.loading = true;
       // let url = `https://fundmobapi.eastmoney.com/FundMApi/FundVarietieValuationDetail.ashx?FCODE=${
       //     this.fund.fundcode
@@ -507,8 +563,8 @@ export default {
       //   this.expansion = res.data.Expansion;
       //   this.myChart.setOption(this.option);
       // });
-    },
-  },
+    }
+  }
 };
 </script>
 

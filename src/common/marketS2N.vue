@@ -11,8 +11,8 @@
     <div>
       <ul class="chart-list">
         <li>
-          沪股通 当日净流入 <span
-            :class="lastDataList[1] >= 0 ? 'red' : 'green'"
+          沪股通 当日净流入
+          <span :class="lastDataList[1] >= 0 ? 'red' : 'green'"
             >{{ (lastDataList[1] / 10000).toFixed(2) }} 亿元</span
           ><span>，当日余额 </span
           ><span :class="lastDataList[2] >= 0 ? 'red' : 'green'"
@@ -20,8 +20,8 @@
           >
         </li>
         <li>
-          深股通 当日净流入 <span
-            :class="lastDataList[3] >= 0 ? 'red' : 'green'"
+          深股通 当日净流入
+          <span :class="lastDataList[3] >= 0 ? 'red' : 'green'"
             >{{ (lastDataList[3] / 10000).toFixed(2) }} 亿元</span
           ><span>，当日余额 </span
           ><span :class="lastDataList[4] >= 0 ? 'red' : 'green'"
@@ -29,8 +29,8 @@
           >
         </li>
         <li>
-          北向资金 当日净流入 <span
-            :class="lastDataList[5] >= 0 ? 'red' : 'green'"
+          北向资金 当日净流入
+          <span :class="lastDataList[5] >= 0 ? 'red' : 'green'"
             >{{ (lastDataList[5] / 10000).toFixed(2) }} 亿元</span
           >
         </li>
@@ -51,8 +51,8 @@ export default {
   props: {
     darkMode: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
@@ -302,16 +302,16 @@ export default {
         "14:57",
         "14:58",
         "14:59",
-        "15:00",
+        "15:00"
       ],
-      lastDataList: [0, 0, 0, 0, 0, 0],
+      lastDataList: [0, 0, 0, 0, 0, 0]
     };
   },
   watch: {},
   computed: {
     defaultColor() {
       return this.darkMode ? "rgba(255,255,255,0.6)" : "#ccc";
-    },
+    }
   },
   mounted() {
     this.init();
@@ -328,7 +328,7 @@ export default {
       );
       this.option = {
         tooltip: {
-          trigger: "axis",
+          trigger: "axis"
           // formatter: (p) => {
           //   return `时间：${p[0].name}<br />${
           //     this.chartTypeList[this.chartType].name
@@ -338,48 +338,48 @@ export default {
         grid: {
           top: 55,
           bottom: 30,
-          right: 30,
+          right: 30
         },
         xAxis: {
           type: "category",
           data: this.timeData,
           axisLabel: {
             formatter: this.fmtAxis,
-            interval: this.fmtVal,
+            interval: this.fmtVal
           },
           axisLine: {
-            onZero: false,
-          },
+            onZero: false
+          }
         },
         yAxis: {
           type: "value",
           name: "单位：亿元",
           scale: true,
           axisLabel: {
-            color: this.defaultColor,
+            color: this.defaultColor
           },
           splitLine: {
             show: true,
             lineStyle: {
               type: "dashed",
-              color: this.defaultColor,
-            },
+              color: this.defaultColor
+            }
           },
-          data: [],
+          data: []
         },
         series: [
           {
             type: "line",
-            data: [],
-          },
-        ],
+            data: []
+          }
+        ]
       };
       this.getData();
     },
     getData() {
       this.loading = true;
       let url = `http://push2.eastmoney.com/api/qt/kamt.rtmin/get?fields1=f1,f2,f3,f4&fields2=f51,f52,f53,f54,f55,f56&ut=&?v=${new Date().getTime()}`;
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url).then(res => {
         this.loading = false;
         let data = res.data.data;
         // console.log(data.s2nDate, data.s2n);
@@ -390,7 +390,7 @@ export default {
         let data5 = [];
 
         if (dataList) {
-          dataList.forEach((el) => {
+          dataList.forEach(el => {
             let arr = el.split(",");
 
             if (arr[1] != "-") {
@@ -402,24 +402,24 @@ export default {
             data5.push((arr[5] / 10000).toFixed(4));
           });
           this.option.legend = {
-            show: true,
+            show: true
           };
           this.option.series = [
             {
               type: "line",
               name: "沪股通",
-              data: data1,
+              data: data1
             },
             {
               type: "line",
               name: "深股通",
-              data: data3,
+              data: data3
             },
             {
               type: "line",
               name: "北向资金",
-              data: data5,
-            },
+              data: data5
+            }
           ];
           this.myChart.setOption(this.option);
         }
@@ -439,8 +439,8 @@ export default {
       } else {
         return false;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

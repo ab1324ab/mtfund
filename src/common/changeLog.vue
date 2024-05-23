@@ -1,36 +1,49 @@
 <template>
   <div v-if="centerDialogVisible" class="shadow">
     <el-dialog
-        title="更新日志"
-        :custom-class="darkMode ? 'changelog darkMode' : 'changelog'"
-        :show-close="false"
-        :close-on-click-modal="false"
-        :modal-append-to-body="false"
-        :close-on-press-escape="false"
-        :modal="false"
-        :visible.sync="centerDialogVisible"
-        :top="top + 'px'"
-        width="90%"
-        center
+      title="更新日志"
+      :custom-class="darkMode ? 'changelog darkMode' : 'changelog'"
+      :show-close="false"
+      :close-on-click-modal="false"
+      :modal-append-to-body="false"
+      :close-on-press-escape="false"
+      :modal="false"
+      :visible.sync="centerDialogVisible"
+      :top="top + 'px'"
+      width="90%"
+      center
     >
-<!--      :show-close="false"-->
+      <!--      :show-close="false"-->
       <div v-if="netError" class="btn-row">
         网络不好？
         <el-button type="primary" @click="goGitee">去官网查看</el-button>
       </div>
-      <div class="content" v-show="!netError" v-loading="loading" :element-loading-background="darkMode ? 'rgba(0, 0, 0, 0.9)' : 'rgba(255, 255, 255, 0.9)'">
-        <p v-if="changelog.tip">{{changelog.tip}}</p>
+      <div
+        class="content"
+        v-show="!netError"
+        v-loading="loading"
+        :element-loading-background="
+          darkMode ? 'rgba(0, 0, 0, 0.9)' : 'rgba(255, 255, 255, 0.9)'
+        "
+      >
+        <p v-if="changelog.tip">{{ changelog.tip }}</p>
         <div v-if="changelog.htmlTip" v-html="changelog.htmlTip"></div>
         <ul>
           <li v-for="el in changelog.list" :key="el.version">
             <h5>
-              v{{el.version}}
-              <span class="btn red" v-if="localVersion == el.version">当前版本</span>
+              v{{ el.version }}
+              <span class="btn red" v-if="localVersion == el.version"
+                >当前版本</span
+              >
               <span class="btn primary" v-if="el.type == 2">重要更新</span>
             </h5>
             <ul>
-              <li :class="i.type == 2 ? 'major' : ''" v-for="(i, ind) in el.content" :key="ind">
-                {{i.content}}
+              <li
+                :class="i.type == 2 ? 'major' : ''"
+                v-for="(i, ind) in el.content"
+                :key="ind"
+              >
+                {{ i.content }}
               </li>
             </ul>
           </li>
@@ -38,43 +51,42 @@
       </div>
 
       <span slot="footer" class="dialog-footer">
-      <el-button type="primary" @click="close">确 定</el-button>
-    </span>
+        <el-button type="primary" @click="close">确 定</el-button>
+      </span>
     </el-dialog>
   </div>
 </template>
 
 <script>
 var json = require("./changeLog.json");
-const {version} = require("../../package.json");
+const { version } = require("../../package.json");
 
 export default {
   props: {
     top: {
       type: Number,
-      default: 0,
+      default: 0
     },
     darkMode: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
       updateurl: {
         github: "",
-        gitee: "",
+        gitee: ""
       },
       centerDialogVisible: false,
       qrcode: false,
       changelog: {},
       loading: true,
       netError: false,
-      localVersion: version,
+      localVersion: version
     };
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     goGitee() {
       window.open("");
@@ -91,8 +103,8 @@ export default {
     close() {
       this.centerDialogVisible = false;
       this.$emit("close", false);
-    },
-  },
+    }
+  }
 };
 </script>
 

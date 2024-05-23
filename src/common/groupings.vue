@@ -1,27 +1,40 @@
 <template>
   <div v-if="groupingShow" class="shadow">
     <el-dialog
-        title="新建基金分组"
-        :custom-class="darkMode ? 'groupingDia darkMode' : 'groupingDia'"
-        :show-close="false"
-        :close-on-click-modal="false"
-        :modal-append-to-body="false"
-        :close-on-press-escape="false"
-        :modal="false"
-        :visible.sync="groupingShow"
-        :top="0 + 'px'"
-        width="100%"
-        center
+      title="新建基金分组"
+      :custom-class="darkMode ? 'groupingDia darkMode' : 'groupingDia'"
+      :show-close="false"
+      :close-on-click-modal="false"
+      :modal-append-to-body="false"
+      :close-on-press-escape="false"
+      :modal="false"
+      :visible.sync="groupingShow"
+      :top="0 + 'px'"
+      width="100%"
+      center
     >
       <div style="margin: 0 auto;width: 90%;">
-        <el-form ref="form" :inline="false" :label-position="'top'" :model="groupingObj">
+        <el-form
+          ref="form"
+          :inline="false"
+          :label-position="'top'"
+          :model="groupingObj"
+        >
           <el-form-item label="分组名称" class="inline_item">
-            <el-input style="width: 150px;" v-model="groupingObj.label"></el-input>
+            <el-input
+              style="width: 150px;"
+              v-model="groupingObj.label"
+            ></el-input>
           </el-form-item>
           <el-form-item label="选择基金">
-            <el-transfer filterable :titles="['全部基金', groupingObj.label]"
-                         :filter-method="filterMethod"
-                         filter-placeholder="请输入基金名称" v-model="groupingObj.value" :data="groupingData"></el-transfer>
+            <el-transfer
+              filterable
+              :titles="['全部基金', groupingObj.label]"
+              :filter-method="filterMethod"
+              filter-placeholder="请输入基金名称"
+              v-model="groupingObj.value"
+              :data="groupingData"
+            ></el-transfer>
           </el-form-item>
         </el-form>
       </div>
@@ -35,57 +48,84 @@
 
 <script>
 import {
-  ElCard, ElCol, ElForm, ElFormItem, ElInput, ElInputNumber, ElOption, ElRadioButton,
-  ElRadioGroup, ElRow, ElSelect, ElTable, ElTableColumn, ElTag, ElTransfer, ElCheckboxGroup, ElCheckbox
-} from '@/common/js/commons';
-import {uuid} from '@/common/js/utils'
+  ElCard,
+  ElCol,
+  ElForm,
+  ElFormItem,
+  ElInput,
+  ElInputNumber,
+  ElOption,
+  ElRadioButton,
+  ElRadioGroup,
+  ElRow,
+  ElSelect,
+  ElTable,
+  ElTableColumn,
+  ElTag,
+  ElTransfer,
+  ElCheckboxGroup,
+  ElCheckbox
+} from "@/common/js/commons";
+import { uuid } from "@/common/js/utils";
 
 export default {
   components: {
-    ElRow, ElCol, ElFormItem, ElForm, ElSelect, ElInput,
-    ElOption, ElInputNumber, ElTable, ElTableColumn,
-    ElCard, ElRadioGroup, ElRadioButton, ElTag, ElTransfer,
-    ElCheckboxGroup, ElCheckbox
+    ElRow,
+    ElCol,
+    ElFormItem,
+    ElForm,
+    ElSelect,
+    ElInput,
+    ElOption,
+    ElInputNumber,
+    ElTable,
+    ElTableColumn,
+    ElCard,
+    ElRadioGroup,
+    ElRadioButton,
+    ElTag,
+    ElTransfer,
+    ElCheckboxGroup,
+    ElCheckbox
   },
 
   props: {
     top: {
       type: Number,
-      default: 0,
+      default: 0
     },
     darkMode: {
       type: Boolean,
-      default: false,
+      default: false
     },
     dataList: {
       type: Array,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
       groupingShow: false,
       groupingArr2: [],
       groupingObj: {
-        label: '新建分组1',
-        name: '',
+        label: "新建分组1",
+        name: "",
         value: []
       },
-      groupingData: [],
+      groupingData: []
     };
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     init(val) {
       this.groupingShow = true;
       this.groupingObj.name = uuid(8, 62);
       this.groupingObj.value = [];
       this.generateData();
-      chrome.storage.sync.get(['groupingArr2'], (res) => {
+      chrome.storage.sync.get(["groupingArr2"], res => {
         this.groupingArr2 = res.groupingArr2 ? res.groupingArr2 : {};
         if (val != null) this.groupingObj = this.groupingArr2[val.name];
-      })
+      });
     },
     generateData() {
       let data = [];
@@ -103,9 +143,8 @@ export default {
       if (this.groupingObj.value.length === 0) {
         if (this.groupingArr2[this.groupingObj.name] != null)
           delete this.groupingArr2[this.groupingObj.name];
-      } else
-        this.groupingArr2[this.groupingObj.name] = this.groupingObj;
-      chrome.storage.sync.set({groupingArr2: this.groupingArr2,});
+      } else this.groupingArr2[this.groupingObj.name] = this.groupingObj;
+      chrome.storage.sync.set({ groupingArr2: this.groupingArr2 });
       this.$emit("refresh", false);
       this.close(this.groupingObj.value.length === 0);
     },
@@ -115,8 +154,8 @@ export default {
     },
     filterMethod(query, item) {
       return item.label.indexOf(query) > -1;
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -158,7 +197,8 @@ export default {
   }
 }
 
-/deep/ .el-button + .el-button, .el-checkbox.is-bordered + .el-checkbox.is-bordered {
+/deep/ .el-button + .el-button,
+.el-checkbox.is-bordered + .el-checkbox.is-bordered {
   margin-left: 0;
 }
 
@@ -196,7 +236,8 @@ export default {
       height: 25px;
     }
 
-    .el-input__prefix, .el-input__suffix {
+    .el-input__prefix,
+    .el-input__suffix {
       top: -2px;
     }
   }
@@ -245,11 +286,11 @@ export default {
     }
 
     .el-transfer-panel__item.el-checkbox {
-      color: #C0C4CC;
+      color: #c0c4cc;
     }
 
     .el-transfer-panel__item:hover {
-      color: rgba($color: #409EFF, $alpha: 0.6);
+      color: rgba($color: #409eff, $alpha: 0.6);
     }
 
     .el-checkbox__input.is-disabled + span.el-checkbox__label {
@@ -264,11 +305,14 @@ export default {
 
     .el-button--primary {
       color: rgba(255, 255, 255, 0.6);
-      background-color: rgba($color: #409EFF, $alpha: 0.6);
-      border-color: rgba($color: #409EFF, $alpha: 0.6);
+      background-color: rgba($color: #409eff, $alpha: 0.6);
+      border-color: rgba($color: #409eff, $alpha: 0.6);
     }
 
-    .el-button--primary.is-disabled, .el-button--primary.is-disabled:active, .el-button--primary.is-disabled:focus, .el-button--primary.is-disabled:hover {
+    .el-button--primary.is-disabled,
+    .el-button--primary.is-disabled:active,
+    .el-button--primary.is-disabled:focus,
+    .el-button--primary.is-disabled:hover {
       color: rgba(255, 255, 255, 0.6);
       background-color: rgba($color: #a0cfff, $alpha: 0.6);
       border-color: rgba($color: #a0cfff, $alpha: 0.6);
@@ -280,12 +324,10 @@ export default {
     color: rgba($color: #ffffff, $alpha: 0.6);
   }
 
-
   .el-button--primary {
     border: 1px solid rgba($color: #409eff, $alpha: 0.6);
     background-color: rgba($color: #409eff, $alpha: 0.6);
     color: rgba($color: #ffffff, $alpha: 0.6);
   }
-
 }
 </style>

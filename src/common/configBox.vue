@@ -2,28 +2,56 @@
   <div v-if="configShadow" class="shadow">
     <div class="config-box" :style="{ marginTop: top + 'px' }">
       <div class="tab-row">
-        <button @click="checked = 'export'" :class="checked == 'export' ? 'checked' : ''">
+        <button
+          @click="checked = 'export'"
+          :class="checked == 'export' ? 'checked' : ''"
+        >
           导出(JSON文本)
         </button>
-        <button @click="checked = 'import'" :class="checked == 'import' ? 'checked' : ''">
+        <button
+          @click="checked = 'import'"
+          :class="checked == 'import' ? 'checked' : ''"
+        >
           导入(JSON文本)
         </button>
       </div>
       <div class="tab-content" v-if="checked == 'export'">
-        <el-input type="textarea" :rows="15" placeholder="请输入内容" v-model="exportConfigStr">
+        <el-input
+          type="textarea"
+          :rows="15"
+          placeholder="请输入内容"
+          v-model="exportConfigStr"
+        >
         </el-input>
-        <input class="btn success" type="button" value="复制到剪贴板" v-clipboard:copy="exportConfigStr" v-clipboard:success="copy" v-clipboard:error="onError"/>
-        <input class="btn" type="button" value="返回" @click="close"/>
+        <input
+          class="btn success"
+          type="button"
+          value="复制到剪贴板"
+          v-clipboard:copy="exportConfigStr"
+          v-clipboard:success="copy"
+          v-clipboard:error="onError"
+        />
+        <input class="btn" type="button" value="返回" @click="close" />
       </div>
       <div class="tab-content" v-else>
-        <el-input type="textarea" :rows="15" placeholder="请在此输入框粘贴配置文本" v-model="inputConfigStr"></el-input>
-        <input class="btn success" type="button" value="提交配置文本" @click="importInput"/>
-        <input class="btn" type="button" value="返回" @click="close"/>
+        <el-input
+          type="textarea"
+          :rows="15"
+          placeholder="请在此输入框粘贴配置文本"
+          v-model="inputConfigStr"
+        ></el-input>
+        <input
+          class="btn success"
+          type="button"
+          value="提交配置文本"
+          @click="importInput"
+        />
+        <input class="btn" type="button" value="返回" @click="close" />
       </div>
 
-<!--      <div class="tab-row">-->
-<!--        <input class="btn" type="button" value="返回" @click="close"/>-->
-<!--      </div>-->
+      <!--      <div class="tab-row">-->
+      <!--        <input class="btn" type="button" value="返回" @click="close"/>-->
+      <!--      </div>-->
     </div>
   </div>
 </template>
@@ -35,8 +63,8 @@ export default {
   props: {
     top: {
       type: Number,
-      default: 0,
-    },
+      default: 0
+    }
   },
   data() {
     return {
@@ -44,17 +72,16 @@ export default {
       checked: "export",
       textarea: "",
       exportConfigStr: null,
-      inputConfigStr: null,
+      inputConfigStr: null
     };
   },
   watch: {},
-  mounted() {
-  },
+  mounted() {},
   methods: {
     init() {
       this.configShadow = true;
       this.inputConfigStr = null;
-      chrome.storage.sync.get(null, (res) => {
+      chrome.storage.sync.get(null, res => {
         delete res.holiday;
         this.exportConfigStr = JSON.stringify(res);
       });
@@ -63,42 +90,40 @@ export default {
       this.configShadow = false;
       this.$emit("close", false);
     },
-    exportConfig() {
-    },
+    exportConfig() {},
     copy(e) {
       this.$message({
         message: "已复制到剪贴板，请自行保存！",
         type: "success",
-        center: true,
+        center: true
       });
     },
-    onError(e) {
-    },
+    onError(e) {},
     importInput() {
       try {
         if (typeof JSON.parse(this.inputConfigStr) == "object") {
           let config = JSON.parse(this.inputConfigStr);
 
-          chrome.storage.sync.set(config, (val) => {
+          chrome.storage.sync.set(config, val => {
             this.$emit("success", false);
 
             this.$message({
               message: "恭喜,导入配置成功！",
               type: "success",
-              center: true,
+              center: true
             });
           });
         }
       } catch (e) {
-        console.log(e)
+        console.log(e);
         this.$message({
           message: "导入失败，配置文本格式不正确！",
           type: "error",
-          center: true,
+          center: true
         });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

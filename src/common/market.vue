@@ -35,19 +35,19 @@ export default {
     marketLine,
     marketBar,
     marketS2N,
-    marketN2S,
+    marketN2S
   },
   name: "market",
   props: {
     darkMode: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
       activeName: "first",
-      boxShadow: false,
+      boxShadow: false
     };
   },
   watch: {},
@@ -62,8 +62,8 @@ export default {
     close() {
       this.boxShadow = false;
       this.$emit("close", false);
-    },
-  },
+    }
+  }
 };
 </script>
 

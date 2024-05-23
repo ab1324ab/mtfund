@@ -41,8 +41,8 @@ export default {
   props: {
     darkMode: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
@@ -293,8 +293,8 @@ export default {
         "14:57",
         "14:58",
         "14:59",
-        "15:00",
-      ],
+        "15:00"
+      ]
     };
   },
 
@@ -302,7 +302,7 @@ export default {
   computed: {
     defaultColor() {
       return this.darkMode ? "rgba(255,255,255,0.6)" : "#ccc";
-    },
+    }
   },
   mounted() {
     this.getTurnover();
@@ -320,7 +320,7 @@ export default {
       );
       this.option = {
         tooltip: {
-          trigger: "axis",
+          trigger: "axis"
           // formatter: (p) => {
           //   return `时间：${p[0].name}<br />${
           //     this.chartTypeList[this.chartType].name
@@ -330,47 +330,47 @@ export default {
         grid: {
           top: 55,
           bottom: 30,
-          right: 30,
+          right: 30
         },
         xAxis: {
           type: "category",
           data: this.timeData,
           axisLabel: {
             formatter: this.fmtAxis,
-            interval: this.fmtVal,
+            interval: this.fmtVal
           },
           axisLine: {
-            onZero: false,
-          },
+            onZero: false
+          }
         },
         yAxis: {
           type: "value",
           name: "单位：亿元",
           scale: true,
           axisLabel: {
-            color: this.defaultColor,
+            color: this.defaultColor
           },
           splitLine: {
             show: true,
             lineStyle: {
               type: "dashed",
-              color: this.defaultColor,
-            },
+              color: this.defaultColor
+            }
           },
-          data: [],
+          data: []
         },
         series: [
           {
             type: "line",
-            data: [],
-          },
-        ],
+            data: []
+          }
+        ]
       };
       this.getData();
     },
     getTurnover() {
       let url = `https://push2.eastmoney.com/api/qt/ulist.np/get?fltt=2&secids=1.000001,0.399001&fields=f1,f2,f3,f4,f6,f12,f13,f104,f105,f106&_=${new Date().getTime()}`;
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url).then(res => {
         this.turnoverData = res.data.data.diff;
       });
     },
@@ -378,7 +378,7 @@ export default {
     getData() {
       this.loading = true;
       let url = `http://push2.eastmoney.com/api/qt/stock/fflow/kline/get?lmt=0&klt=1&secid=1.000001&secid2=0.399001&fields1=f1,f2,f3,f7&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61,f62,f63&_=${new Date().getTime()}`;
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url).then(res => {
         this.loading = false;
         let dataList = res.data.data.klines;
         let data1 = [0];
@@ -388,7 +388,7 @@ export default {
         let data5 = [0];
 
         if (dataList) {
-          dataList.forEach((el) => {
+          dataList.forEach(el => {
             let arr = el.split(",");
             data1.push((arr[1] / 100000000).toFixed(4));
             data2.push((arr[2] / 100000000).toFixed(4));
@@ -397,35 +397,35 @@ export default {
             data5.push((arr[5] / 100000000).toFixed(4));
           });
           this.option.legend = {
-            show: true,
+            show: true
           };
 
           this.option.series = [
             {
               type: "line",
               name: "主力净流入",
-              data: data1,
+              data: data1
             },
             {
               type: "line",
               name: "超大单净流入",
-              data: data5,
+              data: data5
             },
             {
               type: "line",
               name: "大单净流入",
-              data: data4,
+              data: data4
             },
             {
               type: "line",
               name: "中单净流入",
-              data: data3,
+              data: data3
             },
             {
               type: "line",
               name: "小单净流入",
-              data: data2,
-            },
+              data: data2
+            }
           ];
           this.myChart.setOption(this.option);
         }
@@ -445,8 +445,8 @@ export default {
       } else {
         return false;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
