@@ -49,6 +49,15 @@
 
 基于[Vue](https://github.com/vuejs/vue) + [Webpack](https://github.com/webpack/webpack)构建的 vue 项目，使用了[vue-web-extension](https://github.com/Kocal/vue-web-extension/tree/v1)模板快速构建Chrome扩展项目，用到了[Element UI](https://github.com/ElemeFE/element)样式库与[ECharts](https://github.com/apache/echarts)图表库。
 
+## 浏览器安装
+- 手动安装：可以通过以下步骤手动安装.crx文件：
+
+- 首先，关闭提示错误的页面。
+- 然后，将`.crx`文件的扩展名更改为`.zip`，解压文件。
+  打开谷歌浏览器的扩展管理页面`chrome://extensions/`。
+  开启“开发者模式”。
+  选择“加载已解压的扩展程序”，然后选择解压后的文件夹。
+
 ## 运行调试开发
 
 需要 node 环境，先执行

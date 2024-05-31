@@ -28,10 +28,11 @@ const config = {
         }
     },
     module: {
-        rules: [{
-            test: /\.vue$/,
-            loaders: 'vue-loader',
-        },
+        rules: [
+            {
+                test: /\.vue$/,
+                loaders: 'vue-loader',
+            },
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
@@ -79,11 +80,12 @@ const config = {
         new MiniCssExtractPlugin({
             filename: '[name].css',
         }),
-        new CopyPlugin([{
-            from: 'icons',
-            to: 'icons',
-            ignore: ['icon.xcf']
-        },
+        new CopyPlugin([
+            {
+                from: 'icons',
+                to: 'icons',
+                ignore: ['icon.xcf']
+            },
             {
                 from: 'popup/popup.html',
                 to: 'popup/popup.html',
