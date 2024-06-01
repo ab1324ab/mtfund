@@ -76,29 +76,29 @@
 
 ## 界面截图介绍
 ### 基础界面
-![img.png](image/img.png)
+![img.png](https://gitee.com/ab1324ab/mtfund/raw/master/image/img.png)
 
 ### 按钮展开
-![img_1.png](image/img_1.png)
+![img_1.png](https://gitee.com/ab1324ab/mtfund/raw/master/image/img_1.png)
 
 ### 编辑基金
-![img_2.png](image/img_2.png)
+![img_2.png](https://gitee.com/ab1324ab/mtfund/raw/master/image/img_2.png)
 
 ### 基金分组
-![img_3.png](image/img_3.png)
-![img_4.png](image/img_4.png)
+![img_3.png](https://gitee.com/ab1324ab/mtfund/raw/master/image/img_3.png)
+![img_4.png](https://gitee.com/ab1324ab/mtfund/raw/master/image/img_4.png)
 
 ### 定投买入、买入卖出记录
-![img_5.png](image/img_5.png)
-![img_6.png](image/img_6.png)
-![img_7.png](image/img_7.png)
+![img_5.png](https://gitee.com/ab1324ab/mtfund/raw/master/image/img_5.png)
+![img_6.png](https://gitee.com/ab1324ab/mtfund/raw/master/image/img_6.png)
+![img_7.png](https://gitee.com/ab1324ab/mtfund/raw/master/image/img_7.png)
 
 ### 涨跌历史记录
 - 显示MA5线、MA10线、MA20线
-![img_8.png](image/img_8.png)
+![img_8.png](https://gitee.com/ab1324ab/mtfund/raw/master/image/img_8.png)
 ### 基金涨跌监测
 - 连续涨跌日、累计涨跌幅、基金平均线、顶涨跌提醒、底涨跌提醒
-![img_9.png](image/img_9.png)
+![img_9.png](https://gitee.com/ab1324ab/mtfund/raw/master/image/img_9.png)
 
 ### 暗色模式、导入导出、角标金额
 
