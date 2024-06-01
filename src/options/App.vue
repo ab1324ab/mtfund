@@ -9,8 +9,8 @@
           <div class="select-row">
             角标开关：
             <el-radio-group
-              v-model="showBadge"
-              @change="changeOption($event, 'showBadge', true)"
+                v-model="showBadge"
+                @change="changeOption($event, 'showBadge', true)"
             >
               <el-radio border :label="1">打开角标</el-radio>
               <el-radio border :label="2">关闭角标</el-radio>
@@ -19,16 +19,16 @@
           <div v-if="showBadge == 1" class="select-row">
             角标内容：
             <el-radio-group
-              v-model="BadgeContent"
-              @change="changeOption($event, 'BadgeContent', true)"
+                v-model="BadgeContent"
+                @change="changeOption($event, 'BadgeContent', true)"
             >
               <el-radio border :label="1">单个基金</el-radio>
               <el-radio border :label="2">所有基金</el-radio>
               <el-tooltip
-                class="item"
-                effect="dark"
-                content="上证指数,深证成指,沪深300,创业板指"
-                placement="right"
+                  class="item"
+                  effect="dark"
+                  content="上证指数,深证成指,沪深300,创业板指"
+                  placement="right"
               >
                 <el-radio border :label="3"> 单个指数</el-radio>
               </el-tooltip>
@@ -37,8 +37,8 @@
           <div v-if="showBadge == 1 && BadgeContent != 3" class="select-row">
             角标类型：
             <el-radio-group
-              v-model="BadgeType"
-              @change="changeOption($event, 'BadgeType', true)"
+                v-model="BadgeType"
+                @change="changeOption($event, 'BadgeType', true)"
             >
               <el-radio border :label="1">日收益率</el-radio>
               <el-radio border :label="2">日收益额</el-radio>
@@ -54,18 +54,18 @@
           </div>
           <div class="select-row">
             <el-switch
-              v-model="darkMode"
-              @change="changeDarkMode"
-              inactive-text="标准模式"
-              active-text="暗色模式"
+                v-model="darkMode"
+                @change="changeDarkMode"
+                inactive-text="标准模式"
+                active-text="暗色模式"
             ></el-switch>
           </div>
           <div class="select-row">
             <el-switch
-              v-model="normalFontSize"
-              @change="changeFontSize"
-              inactive-text="迷你字号"
-              active-text="标准字号"
+                v-model="normalFontSize"
+                @change="changeFontSize"
+                inactive-text="迷你字号"
+                active-text="标准字号"
             ></el-switch>
           </div>
         </li>
@@ -79,8 +79,8 @@
               <div class="select-row">
                 <span>显示估算净值：</span>
                 <el-switch
-                  v-model="showGSZ"
-                  @change="changeOption($event, 'showGSZ')"
+                    v-model="showGSZ"
+                    @change="changeOption($event, 'showGSZ')"
                 ></el-switch>
               </div>
             </el-col>
@@ -88,8 +88,8 @@
               <div class="select-row" style="padding-left: 0;">
                 <span>显示估值收益：</span>
                 <el-switch
-                  v-model="showGains"
-                  @change="changeOption($event, 'showGains')"
+                    v-model="showGains"
+                    @change="changeOption($event, 'showGains')"
                 ></el-switch>
               </div>
             </el-col>
@@ -99,8 +99,8 @@
               <div class="select-row">
                 <span>显示持有金额：</span>
                 <el-switch
-                  v-model="showAmount"
-                  @change="changeOption($event, 'showAmount')"
+                    v-model="showAmount"
+                    @change="changeOption($event, 'showAmount')"
                 ></el-switch>
               </div>
             </el-col>
@@ -108,8 +108,8 @@
               <div class="select-row" style="padding-left: 0;">
                 <span>显示持有收益：</span>
                 <el-switch
-                  v-model="showCost"
-                  @change="changeOption($event, 'showCost')"
+                    v-model="showCost"
+                    @change="changeOption($event, 'showCost')"
                 ></el-switch>
               </div>
             </el-col>
@@ -117,8 +117,8 @@
               <div class="select-row" style="padding-left: 0;">
                 <span>显示持有收率：</span>
                 <el-switch
-                  v-model="showCostRate"
-                  @change="changeOption($event, 'showCostRate')"
+                    v-model="showCostRate"
+                    @change="changeOption($event, 'showCostRate')"
                 ></el-switch>
               </div>
             </el-col>
@@ -128,8 +128,8 @@
               <div class="select-row">
                 <span>显示昨日涨跌：</span>
                 <el-switch
-                  v-model="showNavchgrt"
-                  @change="changeOption($event, 'showNavchgrt')"
+                    v-model="showNavchgrt"
+                    @change="changeOption($event, 'showNavchgrt')"
                 ></el-switch>
               </div>
             </el-col>
@@ -147,48 +147,48 @@
           </div>
           <div style="padding:8px 0 10px">
             <input
-              class="btn"
-              type="button"
-              value="导出配置文件"
-              @click="exportConfig"
+                class="btn"
+                type="button"
+                value="导出配置文件"
+                @click="exportConfig"
             />
             <a
-              class="exportBtn"
-              ref="configMsg"
-              :href="configHref"
-              download="基金配置文件.json"
+                class="exportBtn"
+                ref="configMsg"
+                :href="configHref"
+                download="基金配置文件.json"
             ></a>
             <a href="javascript:;" class="uploadFile btn">
               导入配置文件
               <input
-                ref="importInput"
-                type="file"
-                accept="application/json"
-                @change="importInput"
+                  ref="importInput"
+                  type="file"
+                  accept="application/json"
+                  @change="importInput"
               />
             </a>
             <input
-              class="btn"
-              type="button"
-              value="导入导出文本"
-              @click="openConfigBox"
+                class="btn"
+                type="button"
+                value="导入导出文本"
+                @click="openConfigBox"
             />
           </div>
           <div style="padding:8px 0 10px">
             <input
-              class="btn"
-              type="button"
-              value="导出基金列表Excel"
-              :disabled="loadingFundList"
-              @click="getFundData"
+                class="btn"
+                type="button"
+                value="导出基金列表Excel"
+                :disabled="loadingFundList"
+                @click="getFundData"
             />
             <a href="javascript:;" class="uploadFile btn">
               导入基金列表Excel
               <input
-                ref="importExcel"
-                type="file"
-                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
-                @change="importExcel"
+                  ref="importExcel"
+                  type="file"
+                  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+                  @change="importExcel"
               />
             </a>
           </div>
@@ -206,39 +206,41 @@
             </div>
             <div class="select-row">
               <el-checkbox
-                size="mini"
-                v-model="equityUp.show"
-                @change="changeOption(equityUp, 'equityUp')"
-                >上涨</el-checkbox
+                  size="mini"
+                  v-model="equityUp.show"
+                  @change="changeOption(equityUp, 'equityUp')"
+              >上涨
+              </el-checkbox
               >
               <el-input-number
-                :disabled="!equityUp.show"
-                size="mini"
-                style="width: 80px;margin-left: 5px;"
-                v-model="equityUp.numeric"
-                @blur="changeOption(equityUp, 'equityUp')"
-                :controls="false"
-                :precision="0"
-                :max="100"
+                  :disabled="!equityUp.show"
+                  size="mini"
+                  style="width: 80px;margin-left: 5px;"
+                  v-model="equityUp.numeric"
+                  @blur="changeOption(equityUp, 'equityUp')"
+                  :controls="false"
+                  :precision="0"
+                  :max="100"
               ></el-input-number>
               <small style="margin-left: 5px;">天</small>
             </div>
             <div class="select-row">
               <el-checkbox
-                size="mini"
-                v-model="equityDown.show"
-                @change="changeOption(equityDown, 'equityDown')"
-                >下跌</el-checkbox
+                  size="mini"
+                  v-model="equityDown.show"
+                  @change="changeOption(equityDown, 'equityDown')"
+              >下跌
+              </el-checkbox
               >
               <el-input-number
-                :disabled="!equityDown.show"
-                size="mini"
-                style="width: 80px;margin-left: 5px;"
-                @blur="changeOption(equityDown, 'equityDown')"
-                v-model="equityDown.numeric"
-                :controls="false"
-                :precision="0"
-                :max="100"
+                  :disabled="!equityDown.show"
+                  size="mini"
+                  style="width: 80px;margin-left: 5px;"
+                  @blur="changeOption(equityDown, 'equityDown')"
+                  v-model="equityDown.numeric"
+                  :controls="false"
+                  :precision="0"
+                  :max="100"
               ></el-input-number>
               <small style="margin-left: 5px;">天</small>
             </div>
@@ -249,41 +251,43 @@
             </div>
             <div class="select-row">
               <el-checkbox
-                size="mini"
-                v-model="amplitudeUp.show"
-                @change="changeOption(amplitudeUp, 'amplitudeUp')"
-                >超过</el-checkbox
+                  size="mini"
+                  v-model="amplitudeUp.show"
+                  @change="changeOption(amplitudeUp, 'amplitudeUp')"
+              >超过
+              </el-checkbox
               >
               <el-input-number
-                :disabled="!amplitudeUp.show"
-                size="mini"
-                style="width: 80px;margin-left: 5px;"
-                @blur="changeOption(amplitudeUp, 'amplitudeUp')"
-                v-model="amplitudeUp.numeric"
-                :controls="false"
-                :precision="2"
-                :step="0.1"
-                :max="20"
+                  :disabled="!amplitudeUp.show"
+                  size="mini"
+                  style="width: 80px;margin-left: 5px;"
+                  @blur="changeOption(amplitudeUp, 'amplitudeUp')"
+                  v-model="amplitudeUp.numeric"
+                  :controls="false"
+                  :precision="2"
+                  :step="0.1"
+                  :max="20"
               ></el-input-number>
               <small style="margin-left: 5px;">%</small>
             </div>
             <div class="select-row">
               <el-checkbox
-                size="mini"
-                v-model="amplitudeDown.show"
-                @change="changeOption(amplitudeDown, 'amplitudeDown')"
-                >跌出</el-checkbox
+                  size="mini"
+                  v-model="amplitudeDown.show"
+                  @change="changeOption(amplitudeDown, 'amplitudeDown')"
+              >跌出
+              </el-checkbox
               >
               <el-input-number
-                :disabled="!amplitudeDown.show"
-                size="mini"
-                style="width: 80px;margin-left: 5px;"
-                @blur="changeOption(amplitudeDown, 'amplitudeDown')"
-                v-model="amplitudeDown.numeric"
-                :controls="false"
-                :precision="2"
-                :step="0.1"
-                :max="20"
+                  :disabled="!amplitudeDown.show"
+                  size="mini"
+                  style="width: 80px;margin-left: 5px;"
+                  @blur="changeOption(amplitudeDown, 'amplitudeDown')"
+                  v-model="amplitudeDown.numeric"
+                  :controls="false"
+                  :precision="2"
+                  :step="0.1"
+                  :max="20"
               ></el-input-number>
               <small style="margin-left: 5px;">%</small>
             </div>
@@ -298,64 +302,71 @@
               <el-row type="flex">
                 <div class="select-row" style="padding-left: 14px;">
                   <el-checkbox
-                    size="mini"
-                    v-model="day5AverageUp"
-                    @change="changeOption(day5AverageUp, 'day5AverageUp')"
-                    >超过5日均线</el-checkbox
+                      size="mini"
+                      v-model="day5AverageUp"
+                      @change="changeOption(day5AverageUp, 'day5AverageUp')"
+                  >超过5日均线
+                  </el-checkbox
                   >
                 </div>
                 <div class="select-row" style="padding-left: 28px;">
                   <el-checkbox
-                    size="mini"
-                    v-model="day5AverageDown"
-                    @change="changeOption(day5AverageDown, 'day5AverageDown')"
-                    >跌出5日均线</el-checkbox
+                      size="mini"
+                      v-model="day5AverageDown"
+                      @change="changeOption(day5AverageDown, 'day5AverageDown')"
+                  >跌出5日均线
+                  </el-checkbox
                   >
                 </div>
               </el-row>
               <el-row type="flex">
                 <div class="select-row" style="padding-left: 14px;">
                   <el-checkbox
-                    size="mini"
-                    v-model="day10AverageUp"
-                    @change="changeOption(day10AverageUp, 'day10AverageUp')"
-                    >超过10日均线</el-checkbox
+                      size="mini"
+                      v-model="day10AverageUp"
+                      @change="changeOption(day10AverageUp, 'day10AverageUp')"
+                  >超过10日均线
+                  </el-checkbox
                   >
                 </div>
                 <div class="select-row">
                   <el-checkbox
-                    size="mini"
-                    v-model="day10AverageDown"
-                    @change="changeOption(day10AverageDown, 'day10AverageDown')"
-                    >跌出10日均线</el-checkbox
+                      size="mini"
+                      v-model="day10AverageDown"
+                      @change="changeOption(day10AverageDown, 'day10AverageDown')"
+                  >跌出10日均线
+                  </el-checkbox
                   >
                 </div>
               </el-row>
               <el-row type="flex">
                 <div class="select-row" style="padding-left: 14px;">
                   <el-checkbox
-                    size="mini"
-                    v-model="day20AverageUp"
-                    @change="changeOption(day20AverageUp, 'day20AverageUp')"
-                    >超过20日均线</el-checkbox
+                      size="mini"
+                      v-model="day20AverageUp"
+                      @change="changeOption(day20AverageUp, 'day20AverageUp')"
+                  >超过20日均线
+                  </el-checkbox
                   >
                 </div>
                 <div class="select-row">
                   <el-checkbox
-                    size="mini"
-                    v-model="day20AverageDown"
-                    @change="changeOption(day20AverageDown, 'day20AverageDown')"
-                    >跌出20日均线</el-checkbox
+                      size="mini"
+                      v-model="day20AverageDown"
+                      @change="changeOption(day20AverageDown, 'day20AverageDown')"
+                  >跌出20日均线
+                  </el-checkbox
                   >
                 </div>
               </el-row>
               <el-row type="flex">
                 <div class="select-row" style="padding-left: 14px;">
                   <el-checkbox
-                    size="mini"
-                    v-model="averageCrossover"
-                    @change="changeOption(averageCrossover, 'averageCrossover')"
-                    >基金日平均线交叉提醒</el-checkbox
+                      size="mini"
+                      v-model="averageCrossover"
+                      @change="changeOption(averageCrossover, 'averageCrossover')"
+                  >基金日平均线交叉提醒
+                  </el-checkbox
                   >
                 </div>
               </el-row>
@@ -367,10 +378,11 @@
             </div>
             <div class="select-row">
               <el-checkbox
-                size="mini"
-                v-model="peakedTips"
-                @change="changeOption(peakedTips, 'peakedTips')"
-                >到顶部后上涨无力提醒</el-checkbox
+                  size="mini"
+                  v-model="peakedTips"
+                  @change="changeOption(peakedTips, 'peakedTips')"
+              >到顶部后上涨无力提醒
+              </el-checkbox
               >
             </div>
           </el-row>
@@ -380,10 +392,11 @@
             </div>
             <div class="select-row">
               <el-checkbox
-                size="mini"
-                v-model="finallyTips"
-                @change="changeOption(finallyTips, 'finallyTips')"
-                >到底部止跌企稳提醒</el-checkbox
+                  size="mini"
+                  v-model="finallyTips"
+                  @change="changeOption(finallyTips, 'finallyTips')"
+              >到底部止跌企稳提醒
+              </el-checkbox
               >
             </div>
             <!--            <small style="margin-left: 20px;color: #999999;line-height: 35px;">tips：预测请根据自己实际情况处理</small>-->
@@ -396,10 +409,10 @@
           <div class="list-title">
             节假日信息
             <button
-              :disabled="disabled"
-              @click="getHoliday"
-              title="点击更新节假日信息"
-              class="btn"
+                :disabled="disabled"
+                @click="getHoliday"
+                title="点击更新节假日信息"
+                class="btn"
             >
               更新
             </button>
@@ -409,7 +422,7 @@
             <span v-if="holiday">
               当前节假日版本： v{{
                 holiday.version
-              }}&nbsp;&nbsp;&nbsp;&nbsp;最后节假日日期：{{ holiday.lastDate }}
+              }}&nbsp;&nbsp;&nbsp;&nbsp;最后节假日日期：{{holiday.lastDate}}
             </span>
           </p>
           <p>
@@ -422,12 +435,12 @@
             关于插件
           </div>
           <p style="line-height:34px">
-            当前插件版本：v{{ version }}
+            当前插件版本：v{{version}}
             <input
-              class="btn"
-              type="button"
-              value="更新日志"
-              @click="changelog"
+                class="btn"
+                type="button"
+                value="更新日志"
+                @click="changelog"
             />
             <!--            <input class="btn" type="button" value="插件主页" @click="openHomePage"/>-->
           </p>
@@ -436,32 +449,32 @@
           <!--            <input class="btn" type="button" value="点击跳转" @click="openTG"/>-->
           <!--          </p>-->
           <change-log
-            @close="closeChangelog"
-            :darkMode="darkMode"
-            ref="changelog"
-            :top="20"
+              @close="closeChangelog"
+              :darkMode="darkMode"
+              ref="changelog"
+              :top="20"
           ></change-log>
           <config-box
-            @success="successInput"
-            :darkMode="darkMode"
-            ref="configBox"
-            :top="40"
+              @success="successInput"
+              :darkMode="darkMode"
+              ref="configBox"
+              :top="40"
           ></config-box>
         </li>
         <li>
-          <div class="list-title">请作者喝杯咖啡</div>
+          <div class="list-title">开源星火，共筑未来 —— 您的支持，我们前行的动力</div>
           <p style="line-height:34px">
-            开源不易，本插件是一个完全开源的项目，也衍生出许多同类产品，您的支持是对作者最大的鼓励。
+            开源之路，步步艰辛，本插件开源而生，繁花似锦，诸多衍生，皆由心力铸就。您的每一份支持，是对作者最大的鼓舞与力量。
             <!--            <input class="btn primary" type="button" title="φ(>ω<*)" value="点击打赏" @click="reward"/>-->
           </p>
           <p style="line-height:34px">
-            <!--            或者你也可以帮忙点一个star，点击查看源码→-->
-            <!--            <span title="点击查看项目源码" class="black icon-btn-row" @click="openGithub">-->
-            <!--              <svg class="githubIcon" height="24" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true">-->
-            <!--                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>-->
-            <!--              </svg>-->
-            <!--              <input class="btn black githubText" type="button" value="源代码"/>-->
-            <!--            </span>-->
+            或者你也可以帮忙点一个star，点击查看源码→
+            <span title="点击查看项目源码" class="black icon-btn-row" @click="openGithub">
+              <input class="btn black githubText" type="button" value="源代码Github"/>
+            </span>
+            <span title="点击查看项目源码" class="black icon-btn-row" @click="openGitee">
+               <input class="btn black githubText" type="button" value="源代码Gitee"/>
+            </span>
           </p>
           <!--          <reward :top="50" ref="reward"></reward>-->
         </li>
@@ -492,9 +505,9 @@ import {
 import reward from "../common/reward";
 import changeLog from "../common/changeLog";
 import configBox from "../common/configBox";
-import { export_json_to_excel } from "../common/js/vendor/Export2Excel";
+import {export_json_to_excel} from "../common/js/vendor/Export2Excel";
 
-const { version } = require("../../package.json");
+const {version} = require("../../package.json");
 
 export default {
   components: {
@@ -587,34 +600,35 @@ export default {
       });
       let fundlist = this.fundListM.map(val => val.code).join(",");
       let url =
-        "https://fundmobapi.eastmoney.com/FundMNewApi/FundMNFInfo?pageIndex=1&pageSize=200&plat=Android&appType=ttjj&product=EFund&Version=1&deviceid=" +
-        this.userId +
-        "&Fcodes=" +
-        fundlist;
+          "https://fundmobapi.eastmoney.com/FundMNewApi/FundMNFInfo?pageIndex=1&pageSize=200&plat=Android&appType=ttjj&product=EFund&Version=1&deviceid=" +
+          this.userId +
+          "&Fcodes=" +
+          fundlist;
       this.$axios
-        .get(url)
-        .then(res => {
-          let data = res.data.Datas;
-          this.dataList = [];
-          let dataList = [];
+          .get(url)
+          .then(res => {
+            let data = res.data.Datas;
+            this.dataList = [];
+            let dataList = [];
 
-          data.forEach(val => {
-            let data = {
-              code: val.FCODE,
-              name: val.SHORTNAME
-            };
+            data.forEach(val => {
+              let data = {
+                code: val.FCODE,
+                name: val.SHORTNAME
+              };
 
-            let slt = this.fundListM.filter(item => item.code == data.code)[0];
-            data.num = slt == null ? 0 : slt.num;
-            data.cost = slt == null ? 0 : slt.cost;
+              let slt = this.fundListM.filter(item => item.code == data.code)[0];
+              data.num = slt == null ? 0 : slt.num;
+              data.cost = slt == null ? 0 : slt.cost;
 
-            dataList.push(data);
+              dataList.push(data);
+            });
+            this.dataList = dataList;
+            this.downloadData();
+            this.loadingFundList = false;
+          })
+          .catch(error => {
           });
-          this.dataList = dataList;
-          this.downloadData();
-          this.loadingFundList = false;
-        })
-        .catch(error => {});
     },
     downloadData() {
       var tHeader = ["基金代码", "基金名称", "持有份额", "成本价"];
@@ -636,7 +650,7 @@ export default {
           });
           // excel读取出的数据
           let excelData = XLSX.utils.sheet_to_json(
-            workbook.Sheets[workbook.SheetNames[0]]
+              workbook.Sheets[workbook.SheetNames[0]]
           );
           // 将上面数据转换成 table需要的数据
           let arr = [];
@@ -647,9 +661,9 @@ export default {
             obj.cost = item["成本价"];
             arr.push(obj);
           });
-          chrome.storage.sync.set({ fundListM: arr }, val => {
+          chrome.storage.sync.set({fundListM: arr}, val => {
             this.initOption();
-            chrome.runtime.sendMessage({ type: "refresh" });
+            chrome.runtime.sendMessage({type: "refresh"});
             this.$message({
               message: "恭喜,导入基金列表成功！",
               type: "success",
@@ -679,109 +693,109 @@ export default {
       this.changelogShadow = false;
     },
     changeOption(val, type, sendMessage) {
-      chrome.storage.sync.set({ [type]: val }, () => {
+      chrome.storage.sync.set({[type]: val}, () => {
         this[type] = val;
         if (sendMessage) {
           chrome.runtime.sendMessage({
             type: "refreshOption",
-            data: { type: type, value: val }
+            data: {type: type, value: val}
           });
         }
       });
     },
     initOption() {
       chrome.storage.sync.get(
-        [
-          "holiday",
-          "showNum",
-          "showAmount",
-          "showGains",
-          "showCost",
-          "showCostRate",
-          "showNavchgrt",
-          "showGSZ",
-          "darkMode",
-          "normalFontSize",
-          "showBadge",
-          "BadgeContent",
-          "BadgeType",
-          "userId",
-          "fundListM",
-          "equityUp",
-          "equityDown",
-          "amplitudeUp",
-          "amplitudeDown",
-          "peakedTips",
-          "finallyTips",
-          "day5AverageUp",
-          "day5AverageDown",
-          "day10AverageUp",
-          "day10AverageDown",
-          "day20AverageUp",
-          "day20AverageDown",
-          "averageCrossover"
-        ],
-        res => {
-          if (res.showNum) {
-            //解决版本遗留问题，拆分属性
-            chrome.storage.sync.set({
-              showNum: false
-            });
-            chrome.storage.sync.set({ showAmount: true }, () => {
-              this.showAmount = true;
-            });
-            chrome.storage.sync.set({ showGains: true }, () => {
-              this.showGains = true;
-            });
-          } else {
-            this.showAmount = res.showAmount ? res.showAmount : false;
-            this.showGains = res.showGains ? res.showGains : false;
+          [
+            "holiday",
+            "showNum",
+            "showAmount",
+            "showGains",
+            "showCost",
+            "showCostRate",
+            "showNavchgrt",
+            "showGSZ",
+            "darkMode",
+            "normalFontSize",
+            "showBadge",
+            "BadgeContent",
+            "BadgeType",
+            "userId",
+            "fundListM",
+            "equityUp",
+            "equityDown",
+            "amplitudeUp",
+            "amplitudeDown",
+            "peakedTips",
+            "finallyTips",
+            "day5AverageUp",
+            "day5AverageDown",
+            "day10AverageUp",
+            "day10AverageDown",
+            "day20AverageUp",
+            "day20AverageDown",
+            "averageCrossover"
+          ],
+          res => {
+            if (res.showNum) {
+              //解决版本遗留问题，拆分属性
+              chrome.storage.sync.set({
+                showNum: false
+              });
+              chrome.storage.sync.set({showAmount: true}, () => {
+                this.showAmount = true;
+              });
+              chrome.storage.sync.set({showGains: true}, () => {
+                this.showGains = true;
+              });
+            } else {
+              this.showAmount = res.showAmount ? res.showAmount : false;
+              this.showGains = res.showGains ? res.showGains : false;
+            }
+            if (res.holiday) {
+              this.holiday = res.holiday;
+            } else {
+              this.getHoliday();
+            }
+            if (res.userId) {
+              this.userId = res.userId;
+            } else {
+              this.userId = this.getGuid();
+              chrome.storage.sync.set({
+                userId: this.userId
+              });
+            }
+            this.fundListM = res.fundListM ? res.fundListM : [];
+            this.showGSZ = res.showGSZ ? res.showGSZ : false;
+            this.showCost = res.showCost ? res.showCost : false;
+            this.showCostRate = res.showCostRate ? res.showCostRate : false;
+            this.showNavchgrt = res.showNavchgrt ? res.showNavchgrt : false;
+            this.darkMode = res.darkMode ? res.darkMode : false;
+            this.normalFontSize = res.normalFontSize ? res.normalFontSize : false;
+            this.showBadge = res.showBadge ? res.showBadge : 1;
+            this.BadgeContent = res.BadgeContent ? res.BadgeContent : 1;
+            this.BadgeType = res.BadgeType ? res.BadgeType : 1;
+            this.equityUp = res.equityUp ? res.equityUp : {};
+            this.equityDown = res.equityDown ? res.equityDown : {};
+            this.amplitudeUp = res.amplitudeUp ? res.amplitudeUp : {};
+            this.amplitudeDown = res.amplitudeDown ? res.amplitudeDown : {};
+            this.peakedTips = res.peakedTips ? res.peakedTips : false;
+            this.finallyTips = res.finallyTips ? res.finallyTips : false;
+            this.day5AverageUp = res.day5AverageUp ? res.day5AverageUp : false;
+            this.day5AverageDown = res.day5AverageDown
+                ? res.day5AverageDown
+                : false;
+            this.day10AverageUp = res.day10AverageUp ? res.day10AverageUp : false;
+            this.day10AverageDown = res.day10AverageDown
+                ? res.day10AverageDown
+                : false;
+            this.day20AverageUp = res.day20AverageUp ? res.day20AverageUp : false;
+            this.day20AverageDown = res.day20AverageDown
+                ? res.day20AverageDown
+                : false;
+            this.averageCrossover = res.averageCrossover
+                ? res.averageCrossover
+                : false;
           }
-          if (res.holiday) {
-            this.holiday = res.holiday;
-          } else {
-            this.getHoliday();
-          }
-          if (res.userId) {
-            this.userId = res.userId;
-          } else {
-            this.userId = this.getGuid();
-            chrome.storage.sync.set({
-              userId: this.userId
-            });
-          }
-          this.fundListM = res.fundListM ? res.fundListM : [];
-          this.showGSZ = res.showGSZ ? res.showGSZ : false;
-          this.showCost = res.showCost ? res.showCost : false;
-          this.showCostRate = res.showCostRate ? res.showCostRate : false;
-          this.showNavchgrt = res.showNavchgrt ? res.showNavchgrt : false;
-          this.darkMode = res.darkMode ? res.darkMode : false;
-          this.normalFontSize = res.normalFontSize ? res.normalFontSize : false;
-          this.showBadge = res.showBadge ? res.showBadge : 1;
-          this.BadgeContent = res.BadgeContent ? res.BadgeContent : 1;
-          this.BadgeType = res.BadgeType ? res.BadgeType : 1;
-          this.equityUp = res.equityUp ? res.equityUp : {};
-          this.equityDown = res.equityDown ? res.equityDown : {};
-          this.amplitudeUp = res.amplitudeUp ? res.amplitudeUp : {};
-          this.amplitudeDown = res.amplitudeDown ? res.amplitudeDown : {};
-          this.peakedTips = res.peakedTips ? res.peakedTips : false;
-          this.finallyTips = res.finallyTips ? res.finallyTips : false;
-          this.day5AverageUp = res.day5AverageUp ? res.day5AverageUp : false;
-          this.day5AverageDown = res.day5AverageDown
-            ? res.day5AverageDown
-            : false;
-          this.day10AverageUp = res.day10AverageUp ? res.day10AverageUp : false;
-          this.day10AverageDown = res.day10AverageDown
-            ? res.day10AverageDown
-            : false;
-          this.day20AverageUp = res.day20AverageUp ? res.day20AverageUp : false;
-          this.day20AverageDown = res.day20AverageDown
-            ? res.day20AverageDown
-            : false;
-          this.averageCrossover = res.averageCrossover
-            ? res.averageCrossover
-            : false;
-        }
       );
     },
     exportConfig() {
@@ -805,7 +819,7 @@ export default {
           let config = JSON.parse(event.target.result);
           chrome.storage.sync.set(config, val => {
             this.initOption();
-            chrome.runtime.sendMessage({ type: "refresh" });
+            chrome.runtime.sendMessage({type: "refresh"});
             this.$message({
               message: "恭喜,导入配置成功！",
               type: "success",
@@ -826,7 +840,7 @@ export default {
     },
     successInput() {
       this.initOption();
-      chrome.runtime.sendMessage({ type: "refresh" });
+      chrome.runtime.sendMessage({type: "refresh"});
     },
     openConfigBox() {
       this.$refs.configBox.init();
@@ -835,7 +849,7 @@ export default {
       this.disabled = true;
       let url = "https://x2rr.github.io/funds/holiday.json";
       this.$axios.get(url).then(res => {
-        chrome.storage.sync.set({ holiday: res.data }, () => {
+        chrome.storage.sync.set({holiday: res.data}, () => {
           this.holiday = res.data;
           chrome.runtime.sendMessage({
             type: "refreshHoliday",
@@ -848,9 +862,12 @@ export default {
     openHoliday() {
       window.open("https://x2rr.github.io/funds/holiday.json");
     },
-    // openGithub() {
-    //   window.open("");
-    // },
+    openGithub() {
+      window.open("https://github.com/ab1324ab/mtfund");
+    },
+    openGitee() {
+      window.open("https://gitee.com/ab1324ab/mtfund");
+    },
     // openTG() {
     //   window.open("");
     // },
@@ -882,7 +899,7 @@ export default {
   padding: 15px 0;
   font-size: 13px;
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
-    "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
 }
 
 .setting-list {
@@ -1058,6 +1075,7 @@ export default {
   /deep/ .el-switch__core:after {
     background-color: rgba($color: #ffffff, $alpha: 0.6);
   }
+
   /deep/ .el-checkbox__input.is-checked + .el-checkbox__label,
   /deep/ .el-radio__input.is-checked + .el-radio__label {
     color: rgba($color: #409eff, $alpha: 0.87);
@@ -1090,6 +1108,7 @@ export default {
     border: 1px solid rgba($color: #409eff, $alpha: 0.6);
     background-color: rgba($color: #409eff, $alpha: 0.6);
   }
+
   /deep/ .el-radio__inner,
   /deep/ .el-checkbox__inner {
     border: 1px solid rgba($color: #dcdfe6, $alpha: 0.6);
